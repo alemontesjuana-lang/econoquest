@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="version" content="v3.1-202603201946">
 <title>EcoQuest 3.0 — Micro & Macro 5° Año</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -935,28 +939,42 @@ body {
         <div class="step-dot" id="sd1"></div>
       </div>
 
-      <!-- Paso 0: rol y curso -->
+      <!-- Paso 0: rol -->
       <div class="step active" id="s0">
         <div class="s-title">¿Cómo ingresás?</div>
-        <div class="s-sub">Seleccioná tu rol y tu curso</div>
-        <div class="role-row">
+        <div class="s-sub">Seleccioná tu rol para continuar</div>
+        <div class="role-row" style="margin-bottom:20px">
           <button class="role-pill on" id="rp-alu" onclick="setRole('student')">🎮 Soy alumno/a</button>
           <button class="role-pill" id="rp-doc" onclick="setRole('teacher')">👩‍🏫 Soy docente</button>
         </div>
-        <div class="s-title" style="font-size:16px;margin-bottom:12px">Tu división</div>
-        <div class="course-row">
-          <div class="course-card on" id="cc1" onclick="selCourse('1')">
-            <div class="cc-emoji">📚</div>
-            <div class="cc-name">5° — 1RA</div>
-            <div class="cc-sub">División Primera</div>
+
+        <!-- ALUMNO: selector de curso -->
+        <div id="student-section">
+          <div class="s-title" style="font-size:15px;margin-bottom:10px">Tu división</div>
+          <div class="course-row">
+            <div class="course-card on" id="cc1" onclick="selCourse('1')">
+              <div class="cc-emoji">📚</div>
+              <div class="cc-name">5° — 1RA</div>
+              <div class="cc-sub">División Primera</div>
+            </div>
+            <div class="course-card" id="cc2" onclick="selCourse('2')">
+              <div class="cc-emoji">📖</div>
+              <div class="cc-name">5° — 2DA</div>
+              <div class="cc-sub">División Segunda</div>
+            </div>
           </div>
-          <div class="course-card" id="cc2" onclick="selCourse('2')">
-            <div class="cc-emoji">📖</div>
-            <div class="cc-name">5° — 2DA</div>
-            <div class="cc-sub">División Segunda</div>
-          </div>
+          <button class="btn-main" onclick="goS(1)">Continuar →</button>
         </div>
-        <button class="btn-main" onclick="goS(1)">Continuar →</button>
+
+        <!-- DOCENTE: acceso directo con código -->
+        <div id="teacher-section" style="display:none">
+          <div style="background:var(--pastel-purple);border:1.5px solid #C7D2FE;border-radius:14px;padding:16px 18px;margin-bottom:18px;font-size:13px;color:var(--indigo)">
+            🔒 Acceso exclusivo para docentes del Instituto Juana de Ibarbourou
+          </div>
+          <label class="lbl">Código docente</label>
+          <input class="inp" id="inp-teacher-pass" type="password" placeholder="Ingresá tu código" />
+          <button class="btn-main" onclick="doTeacherLogin()">Acceder al panel →</button>
+        </div>
       </div>
 
       <!-- Paso 1: nombre y DNI -->
@@ -1445,9 +1463,38 @@ function showToast(msg, color='#10B981'){
 let curRole='student', curCourse='1', curAv='🦁', curStep=0, curMission='';
 
 // ════════════════ LOGIN ════════════════
-function setRole(r){ curRole=r; document.getElementById('rp-alu').classList.toggle('on',r==='student'); document.getElementById('rp-doc').classList.toggle('on',r==='teacher'); }
+function setRole(r){
+  curRole=r;
+  document.getElementById('rp-alu').classList.toggle('on',r==='student');
+  document.getElementById('rp-doc').classList.toggle('on',r==='teacher');
+  document.getElementById('student-section').style.display = r==='student' ? 'block' : 'none';
+  document.getElementById('teacher-section').style.display = r==='teacher' ? 'block' : 'none';
+}
 function selCourse(c){ curCourse=c; document.getElementById('cc1').classList.toggle('on',c==='1'); document.getElementById('cc2').classList.toggle('on',c==='2'); }
 function selAv(el){ document.querySelectorAll('.av-card').forEach(a=>a.classList.remove('on')); el.classList.add('on'); curAv=el.dataset.av; }
+function doTeacherLogin(){
+  const pass = document.getElementById('inp-teacher-pass').value.trim();
+  if(pass !== 'juana2026'){
+    alert('Código incorrecto. Consultá con el administrador.');
+    return;
+  }
+  S.name='Docente'; S.role='teacher'; S.course='1';
+  // Go straight to app with teacher panel visible
+  document.getElementById('teacher-tab').style.display='block';
+  document.getElementById('hname').textContent='Docente';
+  document.getElementById('hav').textContent='👩‍🏫';
+  document.getElementById('hcourse').textContent='Docente';
+  document.getElementById('hcourse').className='course-tag';
+  document.getElementById('hcourse').style.cssText='background:#EDE9FE;color:#5B21B6;font-size:10px;font-weight:800;padding:2px 8px;border-radius:20px;';
+  document.getElementById('login-screen').classList.remove('active');
+  document.getElementById('app-screen').classList.add('active');
+  // Auto-navigate to teacher panel
+  showPage('teacher-page', document.getElementById('teacher-tab'));
+  // Auto-load data
+  setTimeout(()=>loadTeacherData(), 400);
+  buildGlossary();
+}
+
 function goS(n){
   const prev=document.getElementById('s'+curStep); if(prev) prev.classList.remove('active');
   const pdot=document.getElementById('sd'+curStep); if(pdot){ pdot.classList.remove('cur'); pdot.classList.add('ok'); }
