@@ -1,0 +1,2214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoQuest 3.0 — Micro & Macro 5° Año</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #F4F1FF;
+  --bg2:      #EDE9FF;
+  --white:    #FFFFFF;
+  --card:     #FFFFFF;
+  --border:   #E2DCFF;
+
+  --indigo:   #6366F1;
+  --indigo2:  #818CF8;
+  --violet:   #8B5CF6;
+  --pink:     #EC4899;
+  --rose:     #FB7185;
+  --amber:    #F59E0B;
+  --gold:     #EAB308;
+  --teal:     #14B8A6;
+  --green:    #10B981;
+  --sky:      #38BDF8;
+  --orange:   #F97316;
+
+  --ink:      #1E1B4B;
+  --ink2:     #312E81;
+  --muted:    #6B7280;
+  --muted2:   #9CA3AF;
+
+  --pastel-purple: #EDE9FF;
+  --pastel-pink:   #FCE7F3;
+  --pastel-blue:   #DBEAFE;
+  --pastel-green:  #D1FAE5;
+  --pastel-amber:  #FEF3C7;
+  --pastel-rose:   #FFE4E6;
+  --pastel-teal:   #CCFBF1;
+
+  --radius: 18px;
+  --shadow: 0 4px 24px rgba(99,102,241,0.10);
+  --shadow-lg: 0 12px 40px rgba(99,102,241,0.15);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ── SCREENS ── */
+.screen { display:none; }
+.screen.active { display:flex; }
+
+/* ═══════════════════════════════════════
+   LOGIN — PASTEL MODERN
+═══════════════════════════════════════ */
+/* ── PORTADA DIAGONAL BICOLOR ── */
+.login-hero {
+  width: 480px; max-width: 95vw;
+  height: 230px;
+  border-radius: 24px;
+  position: relative; overflow: hidden;
+  box-shadow: 0 16px 48px rgba(123,26,26,.28);
+  margin-bottom: 24px;
+  background: #FFF5F5;
+  flex-shrink: 0;
+}
+.hero-bg-shape {
+  position: absolute; top:0; left:0;
+  width: 54%; height: 100%;
+  background: #7B1A1A;
+  clip-path: polygon(0 0,100% 0,76% 100%,0 100%);
+  z-index: 0;
+}
+.hero-gold-line {
+  position: absolute; top:0; bottom:0;
+  left: calc(54% - 3px); width: 4px;
+  background: linear-gradient(to bottom,#F59E0B,#FDE68A,#F59E0B);
+  z-index: 2;
+}
+.hero-left {
+  position: absolute; left:0; top:0; width:54%;
+  height:100%; z-index:1;
+  display:flex; flex-direction:column;
+  align-items:flex-start; justify-content:center;
+  padding: 18px 18px 18px 22px; gap:10px;
+}
+.hero-logo {
+  width:60px; height:60px;
+  object-fit:contain;
+  border-radius:8px;
+  flex-shrink:0;
+}
+.hero-school {
+  font-size:11px; font-weight:600;
+  color:#FDE68A; line-height:1.4;
+  letter-spacing:.02em;
+}
+.hero-platform {
+  font-size:10px; color:rgba(255,255,255,.6);
+  letter-spacing:.07em; margin-top:2px;
+}
+.hero-right {
+  position:absolute; right:0; top:0;
+  width:50%; height:100%; z-index:1;
+  display:flex; flex-direction:column;
+  align-items:flex-end; justify-content:center;
+  padding: 18px 22px; gap:10px;
+}
+.hero-title {
+  font-family:'Nunito',sans-serif;
+  font-size:21px; font-weight:900;
+  color:#7B1A1A; text-align:right;
+  line-height:1.18;
+}
+.hero-title em { color:#D97706; font-style:normal; }
+.hero-chips { display:flex; flex-direction:column; gap:5px; align-items:flex-end; }
+.hero-chip {
+  font-size:10px; padding:3px 12px;
+  border-radius:20px; font-weight:700;
+}
+.hc1 { background:#FEE2E2; color:#991B1B; }
+.hc2 { background:#EDE9FE; color:#5B21B6; }
+.hc3 { background:#FEF3C7; color:#92400E; }
+
+#login-screen {
+  min-height:100vh;
+  align-items:center; justify-content:center;
+  padding:24px;
+  background:linear-gradient(135deg,#F4F1FF 0%,#FCE7F3 50%,#DBEAFE 100%);
+  position:relative; overflow:hidden;
+}
+
+/* Decorative blobs — softened so they don't overpower the hero */
+#login-screen::before {
+  content: '';
+  position: absolute;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, #C7D2FE44, transparent 70%);
+  top: -120px; right: -80px;
+  border-radius: 50%; z-index: 0;
+}
+#login-screen::after {
+  content: '';
+  position: absolute;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, #FBCFE833, transparent 70%);
+  bottom: -80px; left: -80px;
+  border-radius: 50%; z-index: 0;
+}
+
+.login-wrap {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 24px;
+  width: 100%;
+}
+
+
+.steps-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; margin-bottom: 28px;
+}
+.step-dot {
+  width: 10px; height: 10px; border-radius: 5px;
+  background: var(--border); transition: all .3s;
+}
+.step-dot.cur { width: 28px; background: #7B1A1A; }
+.step-dot.ok { background: var(--green); }
+
+.step { display: none; }
+.step.active { display: block; }
+
+.s-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px; font-weight: 900; color: var(--ink);
+  margin-bottom: 4px;
+}
+.s-sub { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+
+/* Role tabs */
+.role-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+.role-pill {
+  padding: 12px 16px; border-radius: 14px;
+  border: 2px solid var(--border); background: var(--bg);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 700; color: var(--muted);
+  cursor: pointer; text-align: center; transition: all .2s;
+}
+.role-pill:hover { border-color: var(--indigo); }
+.role-pill.on { border-color: var(--indigo); color: var(--indigo); background: var(--pastel-purple); }
+
+/* Course cards */
+.course-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+.course-card {
+  padding: 20px 16px; border-radius: 18px;
+  border: 2px solid var(--border); background: var(--bg);
+  cursor: pointer; text-align: center; transition: all .2s;
+}
+.course-card:hover { transform: translateY(-2px); border-color: #7B1A1A; }
+.course-card.on {
+  border-color: #7B1A1A;
+  background: linear-gradient(135deg, #FEE2E2, #FFF5F5);
+  box-shadow: 0 4px 20px rgba(123,26,26,.15);
+}
+.cc-emoji { font-size: 36px; margin-bottom: 8px; }
+.cc-name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px; font-weight: 900; color: #7B1A1A;
+}
+.cc-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+/* Inputs */
+.lbl {
+  display: block; font-size: 12px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 7px;
+}
+.inp {
+  width: 100%; padding: 13px 16px; border-radius: 12px;
+  border: 2px solid var(--border); background: var(--bg);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px; color: var(--ink);
+  outline: none; transition: all .2s; margin-bottom: 16px;
+}
+.inp:focus { border-color: #7B1A1A; background: white; box-shadow: 0 0 0 4px #7B1A1A15; }
+
+/* Avatar grid */
+.av-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 10px; margin-bottom: 20px;
+}
+.av-card {
+  border-radius: 16px; border: 2.5px solid var(--border);
+  background: var(--bg); padding: 10px 6px;
+  cursor: pointer; text-align: center; transition: all .2s;
+}
+.av-card:hover { border-color: var(--indigo); transform: scale(1.04); }
+.av-card.on {
+  border-color: var(--amber);
+  background: var(--pastel-amber);
+  box-shadow: 0 4px 16px rgba(234,179,8,.2);
+  transform: scale(1.06);
+}
+.av-emoji { font-size: 30px; margin-bottom: 5px; }
+.av-name { font-size: 9px; font-weight: 700; color: var(--muted); letter-spacing: .04em; }
+.av-card.on .av-name { color: #92400E; }
+
+/* Buttons */
+.btn-main {
+  width: 100%; padding: 15px; border-radius: 14px; border: none;
+  background: linear-gradient(135deg, #7B1A1A, #9B2C2C);
+  color: white; font-family: 'Nunito', sans-serif;
+  font-size: 15px; font-weight: 800;
+  cursor: pointer; transition: all .2s;
+  box-shadow: 0 4px 20px rgba(123,26,26,.35);
+}
+.btn-main:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(123,26,26,.4); }
+.btn-sec {
+  width: 100%; padding: 13px; border-radius: 14px;
+  border: 2px solid var(--border); background: transparent;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 600; color: var(--muted);
+  cursor: pointer; transition: all .15s; margin-bottom: 10px;
+}
+.btn-sec:hover { border-color: var(--indigo); color: var(--indigo); }
+
+/* ═══════════════════════════════════════
+   APP LAYOUT
+═══════════════════════════════════════ */
+#app-screen { flex-direction: column; min-height: 100vh; }
+
+/* TOP NAV */
+.topnav {
+  background: white;
+  border-bottom: 1.5px solid var(--border);
+  padding: 0 28px; height: 66px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 16px rgba(99,102,241,.07);
+}
+.nav-left { display: flex; align-items: center; gap: 10px; }
+.nav-logo {
+  width: 38px; height: 38px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--indigo), var(--violet));
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.nav-brand-name {
+  font-family: 'Nunito', sans-serif; font-size: 20px; font-weight: 900;
+  background: linear-gradient(135deg, var(--indigo), var(--violet));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.nav-tabs { display: flex; gap: 4px; }
+.ntab {
+  padding: 7px 16px; border-radius: 10px; border: none;
+  background: transparent; font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 600; color: var(--muted);
+  cursor: pointer; transition: all .15s;
+}
+.ntab:hover { background: var(--bg); color: var(--ink); }
+.ntab.on { background: var(--pastel-purple); color: var(--indigo); }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.xp-chip {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--pastel-amber); border: 1.5px solid #FDE68A;
+  padding: 6px 14px; border-radius: 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px; font-weight: 800; color: #92400E;
+}
+.player-chip {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--bg); border: 1.5px solid var(--border);
+  padding: 6px 14px 6px 6px; border-radius: 20px;
+  cursor: pointer; transition: all .15s;
+}
+.player-chip:hover { border-color: var(--indigo); }
+.pchip-av {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--indigo), var(--pink));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.pchip-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+.course-tag {
+  font-size: 10px; font-weight: 800; padding: 2px 8px;
+  border-radius: 20px; letter-spacing: .06em;
+}
+.c1-tag { background: var(--pastel-purple); color: var(--indigo); }
+.c2-tag { background: var(--pastel-pink); color: var(--pink); }
+
+/* CONTENT AREA */
+.app-area { flex: 1; padding: 28px; max-width: 1100px; margin: 0 auto; width: 100%; }
+.page { display: none; animation: fadeUp .3s ease; }
+.page.on { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+/* ═══════════════════════════════════════
+   MAP / DASHBOARD
+═══════════════════════════════════════ */
+.map-hero {
+  background: linear-gradient(135deg, var(--indigo) 0%, var(--violet) 60%, var(--pink) 100%);
+  border-radius: 24px; padding: 36px 40px;
+  color: white; margin-bottom: 28px;
+  position: relative; overflow: hidden;
+}
+.map-hero::before {
+  content: '🗺'; position: absolute;
+  right: 36px; top: 50%; transform: translateY(-50%);
+  font-size: 90px; opacity: .15;
+}
+.mh-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; opacity: .75; margin-bottom: 6px; }
+.mh-title { font-family: 'Nunito', sans-serif; font-size: clamp(22px,3vw,34px); font-weight: 900; margin-bottom: 6px; }
+.mh-sub { font-size: 15px; opacity: .85; }
+
+/* Player card */
+.player-bar {
+  background: white; border: 1.5px solid var(--border);
+  border-radius: 20px; padding: 22px 28px;
+  display: flex; align-items: center; gap: 20px;
+  margin-bottom: 28px; box-shadow: var(--shadow);
+}
+.pb-av {
+  width: 60px; height: 60px; border-radius: 18px;
+  background: linear-gradient(135deg, var(--pastel-purple), var(--pastel-pink));
+  border: 2.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; flex-shrink: 0;
+}
+.pb-info { flex: 1; }
+.pb-name { font-size: 18px; font-weight: 800; margin-bottom: 2px; }
+.pb-level { font-size: 13px; color: var(--indigo); font-weight: 600; margin-bottom: 8px; }
+.pb-bar-bg { height: 8px; background: var(--bg2); border-radius: 4px; overflow: hidden; }
+.pb-bar-fill {
+  height: 100%; border-radius: 4px;
+  background: linear-gradient(90deg, var(--indigo), var(--pink));
+  transition: width 1s ease;
+}
+.pb-bar-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 5px; font-weight: 600; }
+.pb-stats { display: flex; gap: 24px; flex-shrink: 0; }
+.pb-stat { text-align: center; }
+.pb-stat-val { font-family: 'Nunito', sans-serif; font-size: 26px; font-weight: 900; }
+.v-gold { color: var(--amber); }
+.v-indigo { color: var(--indigo); }
+.v-green { color: var(--green); }
+.pb-stat-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* Zone cards */
+.zones-title {
+  font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 900;
+  color: var(--ink); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.zones-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
+
+.zone-card {
+  background: white; border: 2px solid var(--border);
+  border-radius: 22px; padding: 22px 26px;
+  cursor: pointer; transition: all .22s;
+  display: flex; align-items: center; gap: 20px;
+  box-shadow: var(--shadow);
+}
+.zone-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--indigo); }
+.zone-card.done { border-color: #10B98166; background: linear-gradient(135deg, white, #F0FDF4); }
+.zone-card.locked { opacity: .45; cursor: not-allowed; }
+.zone-card.locked:hover { transform: none; box-shadow: var(--shadow); border-color: var(--border); }
+
+.zc-icon {
+  width: 64px; height: 64px; border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30px; flex-shrink: 0;
+}
+.zc-body { flex: 1; }
+.zc-tag { font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
+.zc-name { font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 900; color: var(--ink); margin-bottom: 4px; }
+.zc-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
+.zc-meta { display: flex; gap: 14px; align-items: center; }
+.zc-xp { font-size: 13px; font-weight: 800; color: var(--amber); }
+.zc-prog { flex: 1; max-width: 180px; }
+.zc-prog-bar { height: 6px; background: var(--bg2); border-radius: 3px; overflow: hidden; }
+.zc-prog-fill { height: 100%; border-radius: 3px; transition: width .8s ease; }
+.zc-prog-lbl { font-size: 11px; color: var(--muted); margin-top: 4px; font-weight: 600; }
+.zc-right { flex-shrink: 0; font-size: 22px; }
+
+/* Color themes per zone */
+.zone-intro .zc-icon { background: var(--pastel-blue); }
+.zone-intro .zc-tag { color: #1D4ED8; }
+.zone-intro .zc-prog-fill { background: linear-gradient(90deg, #3B82F6, #06B6D4); }
+.zone-micro1 .zc-icon { background: var(--pastel-purple); }
+.zone-micro1 .zc-tag { color: var(--violet); }
+.zone-micro1 .zc-prog-fill { background: linear-gradient(90deg, var(--violet), var(--pink)); }
+.zone-micro2 .zc-icon { background: var(--pastel-green); }
+.zone-micro2 .zc-tag { color: #059669; }
+.zone-micro2 .zc-prog-fill { background: linear-gradient(90deg, var(--green), var(--teal)); }
+.zone-news .zc-icon { background: var(--pastel-amber); }
+.zone-news .zc-tag { color: #D97706; }
+.zone-news .zc-prog-fill { background: linear-gradient(90deg, var(--amber), var(--orange)); }
+
+/* Achievements */
+.ach-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 28px; }
+.ach-card {
+  background: white; border: 2px solid var(--border);
+  border-radius: 16px; padding: 16px 10px;
+  text-align: center; transition: all .2s; box-shadow: var(--shadow);
+}
+.ach-card.locked { opacity: .35; filter: grayscale(1); }
+.ach-card.unlocked { border-color: #FDE68A; background: var(--pastel-amber); box-shadow: 0 4px 16px rgba(234,179,8,.2); }
+.ach-emoji { font-size: 28px; margin-bottom: 8px; }
+.ach-name { font-size: 11px; font-weight: 800; color: var(--ink); margin-bottom: 3px; }
+.ach-req { font-size: 10px; color: var(--muted); }
+
+/* ═══════════════════════════════════════
+   MISSION PAGE
+═══════════════════════════════════════ */
+.mission-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 22px;
+}
+.btn-back {
+  display: flex; align-items: center; gap: 8px;
+  background: white; border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 10px 18px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 600; color: var(--muted);
+  cursor: pointer; transition: all .15s; box-shadow: var(--shadow);
+}
+.btn-back:hover { border-color: var(--indigo); color: var(--indigo); }
+
+.btn-dl {
+  display: flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, var(--teal), #0891B2);
+  border: none; border-radius: 12px; padding: 10px 20px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 700; color: white;
+  cursor: pointer; transition: all .15s;
+  box-shadow: 0 4px 16px rgba(20,184,166,.3);
+}
+.btn-dl:hover { transform: translateY(-1px); }
+
+.mission-banner {
+  border-radius: 24px; padding: 34px 40px;
+  color: white; margin-bottom: 22px;
+  position: relative; overflow: hidden;
+}
+.mb-tag { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; opacity: .8; margin-bottom: 8px; }
+.mb-title { font-family: 'Nunito', sans-serif; font-size: clamp(20px,3vw,30px); font-weight: 900; margin-bottom: 8px; }
+.mb-desc { font-size: 15px; opacity: .85; max-width: 600px; }
+.mb-xp { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); text-align: center; opacity: .2; }
+.mb-xp-val { font-family: 'Nunito', sans-serif; font-size: 56px; font-weight: 900; }
+.mb-xp-lbl { font-size: 14px; letter-spacing: .1em; }
+
+.m-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+.mtab {
+  padding: 10px 22px; border-radius: 12px;
+  border: 1.5px solid var(--border); background: white;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 600; color: var(--muted);
+  cursor: pointer; transition: all .15s; box-shadow: var(--shadow);
+}
+.mtab:hover { border-color: var(--indigo); color: var(--indigo); }
+.mtab.on { background: var(--pastel-purple); border-color: var(--indigo); color: var(--indigo); }
+
+.msec { display: none; }
+.msec.on { display: block; }
+
+/* Reader */
+.reader-card {
+  background: white; border: 1.5px solid var(--border);
+  border-radius: 22px; padding: 36px 44px;
+  box-shadow: var(--shadow); line-height: 1.85; margin-bottom: 16px;
+}
+.reader-card h2 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 19px; font-weight: 900; color: var(--ink);
+  margin: 28px 0 12px; display: flex; align-items: center; gap: 10px;
+}
+.reader-card h2::before {
+  content: ''; display: inline-block;
+  width: 5px; height: 22px; border-radius: 3px;
+  background: linear-gradient(var(--indigo), var(--pink));
+}
+.reader-card p { font-size: 15px; color: #374151; margin-bottom: 14px; }
+.reader-card strong { color: var(--indigo); font-weight: 700; }
+.reader-card em { color: var(--violet); font-style: normal; font-weight: 700; }
+
+.callout {
+  border-radius: 16px; padding: 18px 22px;
+  margin: 18px 0; display: flex; gap: 14px;
+}
+.callout.blue { background: var(--pastel-blue); border-left: 4px solid #3B82F6; }
+.callout.green { background: var(--pastel-green); border-left: 4px solid var(--green); }
+.callout.amber { background: var(--pastel-amber); border-left: 4px solid var(--amber); }
+.callout.purple { background: var(--pastel-purple); border-left: 4px solid var(--violet); }
+.callout.rose { background: var(--pastel-rose); border-left: 4px solid var(--rose); }
+.cl-ico { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.cl-title { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
+.callout.blue .cl-title { color: #1D4ED8; }
+.callout.green .cl-title { color: #065F46; }
+.callout.amber .cl-title { color: #92400E; }
+.callout.purple .cl-title { color: var(--violet); }
+.callout.rose .cl-title { color: #9F1239; }
+.cl-text { font-size: 14px; color: #374151; line-height: 1.65; }
+
+.kl { list-style: none; margin: 10px 0 18px; }
+.kl li {
+  padding: 10px 14px 10px 36px; position: relative;
+  font-size: 14px; color: #374151;
+  border-bottom: 1.5px solid var(--border);
+}
+.kl li::before { content: '◆'; position: absolute; left: 12px; color: var(--indigo); font-size: 8px; top: 14px; }
+
+.dtable { width: 100%; border-collapse: collapse; margin: 18px 0; border-radius: 14px; overflow: hidden; }
+.dtable th {
+  background: linear-gradient(135deg, var(--indigo), var(--violet));
+  color: white; padding: 12px 16px; text-align: left;
+  font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+}
+.dtable td { padding: 11px 16px; font-size: 14px; color: #374151; border-bottom: 1.5px solid var(--border); }
+.dtable tr:last-child td { border-bottom: none; }
+.dtable tr:nth-child(even) td { background: var(--bg); }
+
+/* Exercises */
+.ex-card {
+  background: white; border: 2px solid var(--border);
+  border-radius: 20px; margin-bottom: 14px;
+  box-shadow: var(--shadow); transition: border-color .2s;
+  overflow: hidden;
+}
+.ex-card.ok { border-color: #10B98155; }
+.ex-card.fail { border-color: #EF444455; }
+
+.ex-head {
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 22px; cursor: pointer; transition: background .15s;
+}
+.ex-head:hover { background: var(--bg); }
+
+.ex-num {
+  width: 42px; height: 42px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 900;
+  color: white; flex-shrink: 0;
+}
+.en-mc { background: linear-gradient(135deg, var(--indigo), #818CF8); }
+.en-vf { background: linear-gradient(135deg, var(--violet), var(--pink)); }
+
+.ex-info { flex: 1; }
+.ex-ttl { font-size: 15px; font-weight: 700; margin-bottom: 5px; color: var(--ink); }
+.ex-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.etag {
+  font-size: 10px; font-weight: 800; padding: 3px 10px;
+  border-radius: 20px; text-transform: uppercase; letter-spacing: .05em;
+}
+.etag.easy { background: var(--pastel-green); color: #065F46; }
+.etag.med { background: var(--pastel-amber); color: #92400E; }
+.etag.hard { background: var(--pastel-rose); color: #9F1239; }
+.etag.mc { background: var(--pastel-purple); color: var(--indigo); }
+.etag.vf { background: var(--pastel-pink); color: var(--pink); }
+.xp-tag { font-size: 12px; font-weight: 800; color: var(--amber); }
+.ex-sti { font-size: 20px; flex-shrink: 0; }
+.chevron { color: var(--muted); transition: transform .2s; font-size: 16px; }
+.ex-card.open .chevron { transform: rotate(180deg); }
+
+.ex-body {
+  display: none; padding: 0 22px 22px;
+  border-top: 1.5px solid var(--border);
+}
+.ex-card.open .ex-body { display: block; }
+
+.ex-q {
+  padding: 18px 0 16px; font-size: 15px;
+  line-height: 1.7; color: var(--ink); font-weight: 500;
+}
+
+.choices { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+.ch-btn {
+  display: flex; align-items: flex-start; gap: 13px;
+  padding: 13px 17px; border-radius: 14px;
+  border: 2px solid var(--border); background: var(--bg);
+  cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 500; color: var(--ink);
+  text-align: left; transition: all .15s; line-height: 1.5;
+}
+.ch-btn:hover { border-color: var(--indigo); background: var(--pastel-purple); }
+.ch-btn.sel { border-color: var(--indigo); background: var(--pastel-purple); }
+.ch-btn.cor { border-color: var(--green); background: var(--pastel-green); color: #065F46; }
+.ch-btn.wr  { border-color: var(--rose);  background: var(--pastel-rose);  color: #9F1239; }
+.ch-ltr {
+  width: 26px; height: 26px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: white; font-size: 12px; font-weight: 800;
+  border: 1.5px solid var(--border); transition: all .15s;
+}
+.ch-btn.cor .ch-ltr { background: var(--green); border-color: var(--green); color: white; }
+.ch-btn.wr  .ch-ltr { background: var(--rose);  border-color: var(--rose);  color: white; }
+
+.vf-row { display: flex; gap: 12px; margin-bottom: 14px; }
+.vf-btn {
+  flex: 1; padding: 15px; border-radius: 14px;
+  border: 2px solid var(--border); background: var(--bg);
+  cursor: pointer; font-family: 'Nunito', sans-serif;
+  font-size: 15px; font-weight: 800; text-align: center;
+  transition: all .2s; color: var(--muted);
+}
+.vf-btn:hover { transform: translateY(-2px); }
+.vf-v:hover, .vf-v.sel { border-color: var(--green); color: var(--green); background: var(--pastel-green); }
+.vf-f:hover, .vf-f.sel { border-color: var(--rose); color: var(--rose); background: var(--pastel-rose); }
+.vf-v.cor { border-color: var(--green); background: var(--pastel-green); color: #065F46; }
+.vf-f.cor { border-color: var(--rose); background: var(--pastel-rose); color: #9F1239; }
+
+.feedback {
+  border-radius: 16px; padding: 18px 22px;
+  display: none; animation: fadeUp .4s ease; margin-top: 12px;
+}
+.feedback.show { display: block; }
+.feedback.fok { background: var(--pastel-green); border: 2px solid #10B98155; }
+.feedback.ffail { background: var(--pastel-rose); border: 2px solid #EF444455; }
+.fb-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.fb-ico { font-size: 24px; }
+.fb-lbl { font-size: 15px; font-weight: 800; }
+.feedback.fok .fb-lbl { color: #065F46; }
+.feedback.ffail .fb-lbl { color: #9F1239; }
+.fb-exp { font-size: 14px; color: #374151; line-height: 1.65; }
+.fb-xp-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--pastel-amber); border: 1.5px solid #FDE68A;
+  padding: 5px 14px; border-radius: 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px; font-weight: 800; color: #92400E;
+  margin-top: 10px;
+}
+
+/* XP float */
+.xp-float {
+  position: fixed;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px; font-weight: 900; color: var(--amber);
+  pointer-events: none; z-index: 9999;
+  filter: drop-shadow(0 2px 8px rgba(234,179,8,.5));
+  animation: floatUp 1.5s ease forwards;
+}
+@keyframes floatUp {
+  0%{opacity:1;transform:translateY(0) scale(1)}
+  100%{opacity:0;transform:translateY(-80px) scale(1.3)}
+}
+
+/* ═══════════════════════════════════════
+   CERTIFICATE MODAL
+═══════════════════════════════════════ */
+.overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(30,27,75,.4);
+  display: none; align-items: center; justify-content: center;
+  backdrop-filter: blur(6px);
+}
+.overlay.show { display: flex; }
+
+.cert-modal {
+  background: white; border-radius: 28px;
+  width: 520px; max-width: 92vw;
+  box-shadow: 0 32px 80px rgba(99,102,241,.25);
+  overflow: hidden;
+  animation: popIn .4s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes popIn { from{opacity:0;transform:scale(.75)} to{opacity:1;transform:scale(1)} }
+
+.cert-header {
+  background: linear-gradient(135deg, var(--indigo), var(--violet), var(--pink));
+  padding: 36px 40px; text-align: center; color: white;
+}
+.cert-trophy { font-size: 60px; margin-bottom: 8px; }
+.cert-title { font-family: 'Nunito', sans-serif; font-size: 28px; font-weight: 900; margin-bottom: 4px; }
+.cert-sub { font-size: 14px; opacity: .85; }
+
+.cert-body { padding: 32px 40px; }
+.cert-card {
+  border: 3px solid var(--border);
+  border-radius: 20px; padding: 28px;
+  text-align: center; margin-bottom: 24px;
+  background: linear-gradient(135deg, var(--pastel-purple), var(--pastel-pink));
+  position: relative;
+}
+.cert-card::before, .cert-card::after {
+  content: '✦'; position: absolute;
+  font-size: 20px; color: var(--amber); opacity: .5;
+}
+.cert-card::before { top: 14px; left: 20px; }
+.cert-card::after  { top: 14px; right: 20px; }
+.cert-issued { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.cert-student { font-family: 'Nunito', sans-serif; font-size: 24px; font-weight: 900; color: var(--ink); margin-bottom: 4px; }
+.cert-text { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+.cert-unit { font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 900; color: var(--indigo); margin-bottom: 4px; }
+.cert-date { font-size: 12px; color: var(--muted2); }
+.cert-seal {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-top: 16px; font-size: 13px; font-weight: 700; color: var(--indigo);
+}
+.cert-actions { display: flex; gap: 10px; }
+.cert-btn {
+  flex: 1; padding: 13px; border-radius: 14px; border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 700; cursor: pointer; transition: all .15s;
+}
+.cert-dl { background: linear-gradient(135deg, var(--indigo), var(--violet)); color: white; box-shadow: 0 4px 16px rgba(99,102,241,.3); }
+.cert-dl:hover { transform: translateY(-1px); }
+.cert-close { background: var(--bg); color: var(--muted); border: 1.5px solid var(--border) !important; }
+.cert-close:hover { border-color: var(--indigo) !important; color: var(--indigo); }
+
+/* ═══════════════════════════════════════
+   NEWS SECTION
+═══════════════════════════════════════ */
+.news-header {
+  background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+  border: 2px solid #F59E0B44;
+  border-radius: 20px; padding: 24px 28px;
+  margin-bottom: 22px; display: flex; align-items: center; gap: 16px;
+}
+.news-header-icon { font-size: 40px; }
+.news-header-text {}
+.news-header-title { font-family: 'Nunito', sans-serif; font-size: 20px; font-weight: 900; color: var(--ink); margin-bottom: 3px; }
+.news-header-sub { font-size: 14px; color: var(--muted); }
+.news-week-badge {
+  margin-left: auto; background: var(--amber); color: white;
+  padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800;
+  flex-shrink: 0;
+}
+
+.news-card {
+  background: white; border: 2px solid var(--border);
+  border-radius: 20px; margin-bottom: 16px;
+  box-shadow: var(--shadow); overflow: hidden;
+}
+.news-img {
+  width: 100%; height: 180px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 64px;
+}
+.news-content { padding: 22px 24px; }
+.news-tag {
+  font-size: 11px; font-weight: 800; letter-spacing: .1em;
+  text-transform: uppercase; margin-bottom: 8px;
+  display: flex; align-items: center; gap: 6px;
+}
+.news-title { font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 900; color: var(--ink); margin-bottom: 8px; line-height: 1.3; }
+.news-lead { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+.news-body { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 16px; display: none; }
+.news-card.expanded .news-body { display: block; }
+.btn-read-more {
+  background: none; border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 8px 18px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 600; color: var(--muted);
+  cursor: pointer; transition: all .15s;
+}
+.btn-read-more:hover { border-color: var(--amber); color: #92400E; }
+
+/* ═══════════════════════════════════════
+   GLOSSARY
+═══════════════════════════════════════ */
+.gloss-search {
+  position: relative; margin-bottom: 20px;
+}
+.gloss-search input {
+  width: 100%; padding: 13px 16px 13px 44px;
+  border: 2px solid var(--border); border-radius: 14px;
+  background: white; font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px; color: var(--ink); outline: none; transition: all .2s;
+}
+.gloss-search input:focus { border-color: var(--indigo); }
+.gloss-search::before { content: '🔍'; position: absolute; left: 14px; top: 13px; font-size: 16px; }
+.gloss-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.gloss-term {
+  background: white; border: 2px solid var(--border);
+  border-radius: 16px; padding: 18px 20px;
+  box-shadow: var(--shadow); transition: all .2s;
+}
+.gloss-term:hover { border-color: var(--indigo); transform: translateY(-2px); }
+.gloss-term.locked-t { opacity: .3; filter: grayscale(1); }
+.gt-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.gt-word { font-size: 16px; font-weight: 800; color: var(--ink); }
+.gt-unit {
+  font-size: 10px; font-weight: 700; padding: 2px 8px;
+  border-radius: 20px; background: var(--pastel-purple); color: var(--indigo);
+}
+.gt-def { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.gt-example { font-size: 12px; color: var(--indigo); margin-top: 6px; font-style: italic; }
+
+/* ═══════════════════════════════════════
+   TEACHER PANEL
+═══════════════════════════════════════ */
+.teacher-banner {
+  background: linear-gradient(135deg, var(--ink), var(--ink2));
+  border-radius: 24px; padding: 28px 36px; color: white;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 24px;
+}
+.tb-title { font-family: 'Nunito', sans-serif; font-size: 24px; font-weight: 900; margin-bottom: 4px; }
+.tb-sub { font-size: 14px; opacity: .7; }
+
+.metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+.met-card { background: white; border: 1.5px solid var(--border); border-radius: 18px; padding: 22px; box-shadow: var(--shadow); }
+.met-val { font-family: 'Nunito', sans-serif; font-size: 36px; font-weight: 900; margin-bottom: 4px; }
+.met-lbl { font-size: 13px; color: var(--muted); }
+
+.course-filter { display: flex; gap: 8px; margin-bottom: 16px; }
+.cf-btn {
+  padding: 8px 18px; border-radius: 10px;
+  border: 1.5px solid var(--border); background: white;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 600; color: var(--muted);
+  cursor: pointer; transition: all .15s; box-shadow: var(--shadow);
+}
+.cf-btn.on { border-color: var(--indigo); color: var(--indigo); background: var(--pastel-purple); }
+
+.stbl { width: 100%; border-collapse: collapse; }
+.stbl th { text-align: left; padding: 11px 16px; font-size: 11px; font-weight: 800; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; border-bottom: 2px solid var(--border); }
+.stbl td { padding: 13px 16px; font-size: 14px; border-bottom: 1.5px solid var(--border); }
+.stbl tr:last-child td { border-bottom: none; }
+.stbl tr:hover td { background: var(--bg); }
+.gpill { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 800; font-family: 'Nunito', sans-serif; }
+.gpill.h { background: var(--pastel-green); color: #065F46; }
+.gpill.m { background: var(--pastel-amber); color: #92400E; }
+.gpill.l { background: var(--pastel-rose); color: #9F1239; }
+
+.summary-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, var(--green), var(--teal));
+  border: none; border-radius: 12px; padding: 12px 24px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 700; color: white;
+  cursor: pointer; transition: all .15s;
+  box-shadow: 0 4px 16px rgba(16,185,129,.3);
+  margin-top: 16px;
+}
+.summary-btn:hover { transform: translateY(-1px); }
+
+/* Progress page */
+.prog-banner { background: linear-gradient(135deg, var(--green), var(--teal)); border-radius: 22px; padding: 28px 32px; color: white; margin-bottom: 24px; }
+.pb-title { font-family: 'Nunito', sans-serif; font-size: 22px; font-weight: 900; margin-bottom: 3px; }
+.prog-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+.progc { background: white; border: 1.5px solid var(--border); border-radius: 16px; padding: 18px 20px; box-shadow: var(--shadow); }
+.progc-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.progc-name { font-size: 14px; font-weight: 700; }
+.progc-pct { font-family: 'Nunito', sans-serif; font-size: 22px; font-weight: 900; }
+.prog-bar { height: 8px; background: var(--bg2); border-radius: 4px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 4px; transition: width .8s ease; }
+
+/* Responsive */
+@media(max-width:768px){
+  .nav-tabs { display: none; }
+  .pb-stats { display: none; }
+  .ach-grid { grid-template-columns: repeat(3,1fr); }
+  .app-area { padding: 16px; }
+  .reader-card { padding: 22px 18px; }
+  .gloss-grid { grid-template-columns: 1fr; }
+  .prog-2col { grid-template-columns: 1fr; }
+  .metrics-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════ LOGIN ════════════ -->
+<div id="login-screen" class="screen active">
+  <div class="login-wrap">
+
+    <!-- ── PORTADA DIAGONAL ── -->
+    <div class="login-hero">
+      <div class="hero-bg-shape"></div>
+      <div class="hero-gold-line"></div>
+      <div class="hero-left">
+        <img src="data:image/png;base64,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" alt="Instituto Juana de Ibarbourou" class="hero-logo">
+        <div>
+          <div class="hero-school">Instituto Juana<br>de Ibarbourou</div>
+          <div class="hero-platform">Plataforma EcoQuest · 2026</div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-title">Micro &amp;<br><em>Macro</em><br>economía</div>
+        <div class="hero-chips">
+          <span class="hero-chip hc1">5° 1RA</span>
+          <span class="hero-chip hc2">5° 2DA</span>
+          <span class="hero-chip hc3">Ciclo 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CARD DE LOGIN ── -->
+    <div class="login-card">
+      <div class="steps-row">
+        <div class="step-dot cur" id="sd0"></div>
+        <div class="step-dot" id="sd1"></div>
+        <div class="step-dot" id="sd2"></div>
+      </div>
+
+      <!-- Paso 0: rol y curso -->
+      <div class="step active" id="s0">
+        <div class="s-title">¿Cómo ingresás?</div>
+        <div class="s-sub">Seleccioná tu rol y tu curso</div>
+        <div class="role-row">
+          <button class="role-pill on" id="rp-alu" onclick="setRole('student')">🎮 Soy alumno/a</button>
+          <button class="role-pill" id="rp-doc" onclick="setRole('teacher')">👩‍🏫 Soy docente</button>
+        </div>
+        <div class="s-title" style="font-size:16px;margin-bottom:12px">Tu división</div>
+        <div class="course-row">
+          <div class="course-card on" id="cc1" onclick="selCourse('1')">
+            <div class="cc-emoji">📚</div>
+            <div class="cc-name">5° — 1RA</div>
+            <div class="cc-sub">División Primera</div>
+          </div>
+          <div class="course-card" id="cc2" onclick="selCourse('2')">
+            <div class="cc-emoji">📖</div>
+            <div class="cc-name">5° — 2DA</div>
+            <div class="cc-sub">División Segunda</div>
+          </div>
+        </div>
+        <button class="btn-main" onclick="goS(1)">Continuar →</button>
+      </div>
+
+      <!-- Paso 1: nombre y legajo -->
+      <div class="step" id="s1">
+        <div class="s-title">Tus datos</div>
+        <div class="s-sub">Ingresá tu nombre y legajo para guardar tu progreso</div>
+        <label class="lbl">Nombre completo</label>
+        <input class="inp" id="inp-name" type="text" placeholder="Ej: Lucas Martínez" />
+        <label class="lbl">Número de legajo</label>
+        <input class="inp" id="inp-leg" type="text" placeholder="Ej: 2024-042" />
+        <button class="btn-main" onclick="goS(2)">Elegir avatar →</button>
+        <button class="btn-sec" onclick="goS(0)">← Volver</button>
+      </div>
+
+      <!-- Paso 2: avatar -->
+      <div class="step" id="s2">
+        <div class="s-title">Elegí tu personaje</div>
+        <div class="s-sub">Cada personaje tiene su estilo. ¡Elegí el que más te represente!</div>
+        <div class="av-grid" id="av-grid">
+          <div class="av-card on" data-av="🦁" onclick="selAv(this)"><div class="av-emoji">🦁</div><div class="av-name">EL LÍDER</div></div>
+          <div class="av-card" data-av="🐯" onclick="selAv(this)"><div class="av-emoji">🐯</div><div class="av-name">LA FUERZA</div></div>
+          <div class="av-card" data-av="🦊" onclick="selAv(this)"><div class="av-emoji">🦊</div><div class="av-name">LA ASTUTA</div></div>
+          <div class="av-card" data-av="🐉" onclick="selAv(this)"><div class="av-emoji">🐉</div><div class="av-name">EL PODER</div></div>
+          <div class="av-card" data-av="🦅" onclick="selAv(this)"><div class="av-emoji">🦅</div><div class="av-name">LA VISIÓN</div></div>
+          <div class="av-card" data-av="🤖" onclick="selAv(this)"><div class="av-emoji">🤖</div><div class="av-name">EL ANALISTA</div></div>
+          <div class="av-card" data-av="🧙" onclick="selAv(this)"><div class="av-emoji">🧙</div><div class="av-name">EL SABIO</div></div>
+          <div class="av-card" data-av="🧜" onclick="selAv(this)"><div class="av-emoji">🧜</div><div class="av-name">LA LIBRE</div></div>
+          <div class="av-card" data-av="🦸" onclick="selAv(this)"><div class="av-emoji">🦸</div><div class="av-name">LA HEROÍNA</div></div>
+          <div class="av-card" data-av="🧝" onclick="selAv(this)"><div class="av-emoji">🧝</div><div class="av-name">EL ÉLFICO</div></div>
+        </div>
+        <button class="btn-main" onclick="doLogin()">¡Comenzar aventura! 🚀</button>
+        <button class="btn-sec" onclick="goS(1)">← Volver</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════ APP ════════════ -->
+<div id="app-screen" class="screen">
+  <nav class="topnav">
+    <div class="nav-left">
+      <div class="nav-logo" style="background:linear-gradient(135deg,#7B1A1A,#9B2C2C)">🎓</div>
+      <span class="nav-brand-name">EcoQuest</span>
+    </div>
+    <div class="nav-tabs">
+      <button class="ntab on" onclick="showPage('map-page',this)">🗺 Mapa</button>
+      <button class="ntab" onclick="showPage('news-page',this)">📰 Noticias</button>
+      <button class="ntab" onclick="showPage('glossary-page',this)">📖 Glosario</button>
+      <button class="ntab" onclick="showPage('progress-page',this)">📊 Progreso</button>
+      <button class="ntab" id="teacher-tab" style="display:none" onclick="showPage('teacher-page',this)">👩‍🏫 Docente</button>
+    </div>
+    <div class="nav-right">
+      <div class="xp-chip">⭐ <span id="hxp">0</span> XP</div>
+      <div class="player-chip" onclick="doLogout()">
+        <div class="pchip-av" id="hav">🦁</div>
+        <div>
+          <div class="pchip-name" id="hname">Jugador</div>
+          <div class="course-tag c1-tag" id="hcourse">5° 1RA</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="app-area">
+
+    <!-- MAP PAGE -->
+    <div id="map-page" class="page on">
+      <div class="map-hero">
+        <div class="mh-eyebrow">📅 Economía · Ciclo 2026</div>
+        <div class="mh-title" id="map-welcome">¡Bienvenido/a al mapa!</div>
+        <div class="mh-sub">Completá misiones, sumá XP y desbloqueá certificados 🏅</div>
+      </div>
+
+      <div class="player-bar">
+        <div class="pb-av" id="map-av">🦁</div>
+        <div class="pb-info">
+          <div class="pb-name" id="map-name">Jugador</div>
+          <div class="pb-level" id="map-lvl">⚡ Aprendiz de Economista</div>
+          <div class="pb-bar-bg"><div class="pb-bar-fill" id="pb-fill" style="width:0%"></div></div>
+          <div class="pb-bar-labels"><span id="pb-cur">0 XP</span><span id="pb-max">Próximo nivel: 200 XP</span></div>
+        </div>
+        <div class="pb-stats">
+          <div class="pb-stat"><div class="pb-stat-val v-gold" id="map-xp">0</div><div class="pb-stat-lbl">XP Total</div></div>
+          <div class="pb-stat"><div class="pb-stat-val v-indigo" id="map-done">0</div><div class="pb-stat-lbl">Ejercicios</div></div>
+          <div class="pb-stat"><div class="pb-stat-val v-green" id="map-avg">—</div><div class="pb-stat-lbl">Promedio</div></div>
+        </div>
+      </div>
+
+      <div class="zones-title">⚔️ Zonas del conocimiento</div>
+      <div class="zones-grid">
+        <div class="zone-card zone-intro" onclick="openMission('intro')">
+          <div class="zc-icon">🌍</div>
+          <div class="zc-body">
+            <div class="zc-tag">Zona de inicio</div>
+            <div class="zc-name">Mundo de la Economía</div>
+            <div class="zc-desc">Conceptos generales, agentes económicos, micro vs macro y el problema fundamental de la escasez.</div>
+            <div class="zc-meta">
+              <span class="zc-xp">⭐ 150 XP</span>
+              <div class="zc-prog"><div class="zc-prog-bar"><div class="zc-prog-fill" id="zfill-intro" style="width:0%"></div></div><div class="zc-prog-lbl" id="zlbl-intro">0/4 ejercicios</div></div>
+            </div>
+          </div>
+          <div class="zc-right" id="zr-intro">▶</div>
+        </div>
+
+        <div class="zone-card zone-micro1" onclick="openMission('micro1')">
+          <div class="zc-icon">🛒</div>
+          <div class="zc-body">
+            <div class="zc-tag" style="color:var(--violet)">Microeconomía</div>
+            <div class="zc-name">El Consumidor y la Demanda</div>
+            <div class="zc-desc">Utilidad marginal, curvas de indiferencia, equilibrio del consumidor, demanda y elasticidades.</div>
+            <div class="zc-meta">
+              <span class="zc-xp">⭐ 200 XP</span>
+              <div class="zc-prog"><div class="zc-prog-bar"><div class="zc-prog-fill" id="zfill-micro1" style="width:0%;background:linear-gradient(90deg,var(--violet),var(--pink))"></div></div><div class="zc-prog-lbl" id="zlbl-micro1">0/5 ejercicios</div></div>
+            </div>
+          </div>
+          <div class="zc-right" id="zr-micro1">▶</div>
+        </div>
+
+        <div class="zone-card zone-micro2" onclick="openMission('micro2')">
+          <div class="zc-icon">🏭</div>
+          <div class="zc-body">
+            <div class="zc-tag" style="color:#059669">Microeconomía</div>
+            <div class="zc-name">Producción y Costos</div>
+            <div class="zc-desc">Teoría de la producción, etapas, rendimientos, costos de corto y largo plazo, maximización del beneficio.</div>
+            <div class="zc-meta">
+              <span class="zc-xp">⭐ 200 XP</span>
+              <div class="zc-prog"><div class="zc-prog-bar"><div class="zc-prog-fill" id="zfill-micro2" style="width:0%;background:linear-gradient(90deg,var(--green),var(--teal))"></div></div><div class="zc-prog-lbl" id="zlbl-micro2">0/5 ejercicios</div></div>
+            </div>
+          </div>
+          <div class="zc-right" id="zr-micro2">▶</div>
+        </div>
+
+        <div class="zone-card zone-news" onclick="showPage('news-page',null);document.querySelectorAll('.ntab')[1]?.classList.add('on')">
+          <div class="zc-icon">📰</div>
+          <div class="zc-body">
+            <div class="zc-tag" style="color:#D97706">Actualidad</div>
+            <div class="zc-name">Economía en las Noticias</div>
+            <div class="zc-desc">Noticias reales de Infobae adaptadas para vos, con ejercicios vinculados. Se actualiza cada semana.</div>
+            <div class="zc-meta"><span class="zc-xp">⭐ 75 XP / semana</span></div>
+          </div>
+          <div class="zc-right">📰</div>
+        </div>
+      </div>
+
+      <div class="zones-title">🏆 Logros</div>
+      <div class="ach-grid">
+        <div class="ach-card locked" id="ach1"><div class="ach-emoji">🌱</div><div class="ach-name">Primer Paso</div><div class="ach-req">1 ejercicio</div></div>
+        <div class="ach-card locked" id="ach2"><div class="ach-emoji">🔥</div><div class="ach-name">En Racha</div><div class="ach-req">3 correctos seguidos</div></div>
+        <div class="ach-card locked" id="ach3"><div class="ach-emoji">🎯</div><div class="ach-name">Zona Perfecta</div><div class="ach-req">Misión sin errores</div></div>
+        <div class="ach-card locked" id="ach4"><div class="ach-emoji">📰</div><div class="ach-name">Lector Activo</div><div class="ach-req">1 noticia completada</div></div>
+        <div class="ach-card locked" id="ach5"><div class="ach-emoji">💎</div><div class="ach-name">500 XP</div><div class="ach-req">Acumulá 500 XP</div></div>
+        <div class="ach-card locked" id="ach6"><div class="ach-emoji">🏆</div><div class="ach-name">Maestro/a</div><div class="ach-req">Completá todo</div></div>
+      </div>
+    </div>
+
+    <!-- MISSION PAGE -->
+    <div id="mission-page" class="page">
+      <div class="mission-topbar">
+        <button class="btn-back" onclick="showPage('map-page',document.querySelector('.ntab'))">← Volver al mapa</button>
+        <button class="btn-dl" onclick="dlMission()">⬇ Descargar material</button>
+      </div>
+      <div class="mission-banner" id="mbanner">
+        <div class="mb-tag" id="mb-tag">Zona</div>
+        <div class="mb-title" id="mb-title">Título</div>
+        <div class="mb-desc" id="mb-desc">Descripción</div>
+        <div class="mb-xp"><div class="mb-xp-val" id="mb-xpval">200</div><div class="mb-xp-lbl">XP</div></div>
+      </div>
+      <div class="m-tabs">
+        <button class="mtab on" onclick="showMsec('c',this)">📖 Contenido</button>
+        <button class="mtab" onclick="showMsec('e',this)">⚔️ Ejercicios</button>
+      </div>
+      <div class="msec on" id="mc"></div>
+      <div class="msec" id="me"></div>
+    </div>
+
+    <!-- NEWS PAGE -->
+    <div id="news-page" class="page">
+      <div class="news-header">
+        <div class="news-header-icon">📰</div>
+        <div class="news-header-text">
+          <div class="news-header-title">Economía en las Noticias</div>
+          <div class="news-header-sub">3 noticias de Infobae adaptadas para entender la economía real · Actualizadas semanalmente</div>
+        </div>
+        <div class="news-week-badge">Semana del 23/3/2026</div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-img" style="background:linear-gradient(135deg,var(--pastel-blue),var(--pastel-purple))">💵</div>
+        <div class="news-content">
+          <div class="news-tag" style="color:#1D4ED8">📌 Política Monetaria</div>
+          <div class="news-title">El Banco Central bajó la tasa de interés al 32% anual: ¿qué significa para tu bolsillo?</div>
+          <div class="news-lead">La autoridad monetaria redujo por tercera vez en el año la tasa de referencia. Esta decisión afecta el costo del crédito, los plazos fijos y la inflación esperada.</div>
+          <div class="news-body">Cuando el Banco Central baja la <strong>tasa de interés de referencia</strong>, el dinero se vuelve más barato de pedir prestado. Los bancos pueden ofrecer créditos a menor costo, lo que incentiva a las familias y empresas a invertir y consumir más. Sin embargo, si hay demasiado dinero circulando, los precios pueden subir. Este es el dilema clásico de la <strong>política monetaria expansiva</strong>: estimula la economía pero arriesga acelerar la inflación.<br><br>Para los estudiantes: si tenés un plazo fijo, una tasa más baja significa menos rendimiento. Si querés sacar un crédito, significa cuotas más baratas. La tasa de interés es la "palanca" más poderosa del Banco Central.</div>
+          <button class="btn-read-more" onclick="toggleNews(this)">Leer más ▾</button>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-img" style="background:linear-gradient(135deg,var(--pastel-amber),var(--pastel-rose))">📈</div>
+        <div class="news-content">
+          <div class="news-tag" style="color:#D97706">📌 Inflación</div>
+          <div class="news-title">La inflación de mayo fue del 3,3%: ¿cómo se calcula y por qué importa?</div>
+          <div class="news-lead">El INDEC publicó el IPC de mayo. Alimentos y bebidas lideran la suba. Los economistas debaten si la desaceleración es sostenible.</div>
+          <div class="news-body">El <strong>Índice de Precios al Consumidor (IPC)</strong> mide cuánto subieron los precios de una canasta representativa de bienes y servicios que consumen las familias argentinas. Un 3,3% mensual equivale a casi 40% anual. Los rubros que más subieron este mes fueron alimentos, indumentaria y salud.<br><br>Para entenderlo en tu vida: si tus padres gastaban $100.000 en alimentos en enero, para diciembre necesitarán unos $148.000 para comprar lo mismo. Esa diferencia es la inflación. Por eso el <strong>salario real</strong> (lo que podés comprar con tu sueldo) importa más que el salario nominal (los pesos que cobrás).</div>
+          <button class="btn-read-more" onclick="toggleNews(this)">Leer más ▾</button>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-img" style="background:linear-gradient(135deg,var(--pastel-green),var(--pastel-teal))">🏭</div>
+        <div class="news-content">
+          <div class="news-tag" style="color:#059669">📌 Microeconomía</div>
+          <div class="news-title">YPF aumentó el precio de la nafta 8%: cómo funciona la demanda inelástica en los combustibles</div>
+          <div class="news-lead">El aumento en los combustibles impacta en toda la cadena de costos de la economía. Los economistas explican por qué la demanda de nafta casi no cae aunque el precio suba.</div>
+          <div class="news-body">La nafta tiene una <strong>demanda inelástica</strong>: aunque su precio suba mucho, la cantidad que consume la gente baja muy poco. ¿Por qué? Porque no tiene sustitutos perfectos en el corto plazo. Si manejás para ir a trabajar, seguís cargando nafta aunque sea más cara.<br><br>La <strong>elasticidad-precio</strong> de los combustibles en Argentina se estima en torno a -0,15: si el precio sube 10%, la demanda baja solo 1,5%. Eso explica por qué las empresas y el Estado usan estos bienes para recaudar impuestos: sabiendo que la gente igual los comprará, pueden subir el precio sin perder muchas ventas.</div>
+          <button class="btn-read-more" onclick="toggleNews(this)">Leer más ▾</button>
+        </div>
+      </div>
+
+      <div style="background:var(--pastel-amber);border:2px solid #FDE68A;border-radius:16px;padding:20px 24px;margin-top:8px;">
+        <div style="font-weight:800;color:#92400E;margin-bottom:6px;">⚔️ Ejercicios de las noticias</div>
+        <div style="font-size:14px;color:#78350F">Respondé correctamente los 3 ejercicios de esta semana y ganás <strong>75 XP extra</strong> + el logro 📰 Lector Activo.</div>
+      </div>
+
+      <div style="margin-top:16px">
+        <div class="ex-card" id="nex1" data-unit="news">
+          <div class="ex-head" onclick="toggleEx('nex1')">
+            <div class="ex-num en-mc">N1</div>
+            <div class="ex-info"><div class="ex-ttl">Noticia 1 — Tasa de interés</div><div class="ex-tags"><span class="etag easy">Fácil</span><span class="etag mc">Opción múltiple</span><span class="xp-tag">⭐ +25 XP</span></div></div>
+            <div class="ex-sti" id="sti-nex1">⬜</div><div class="chevron">▾</div>
+          </div>
+          <div class="ex-body">
+            <div class="ex-q">Cuando el Banco Central <strong>baja la tasa de interés de referencia</strong>, ¿cuál de los siguientes efectos es el más directo e inmediato en la economía?</div>
+            <div class="choices" id="ch-nex1">
+              <button class="ch-btn" onclick="ansM('nex1',0,1,25)"><span class="ch-ltr">A</span>El precio de los bienes y servicios baja automáticamente</button>
+              <button class="ch-btn" onclick="ansM('nex1',1,1,25)"><span class="ch-ltr">B</span>El crédito se abarata y se incentiva el consumo y la inversión</button>
+              <button class="ch-btn" onclick="ansM('nex1',2,1,25)"><span class="ch-ltr">C</span>El tipo de cambio sube inmediatamente de forma proporcional</button>
+              <button class="ch-btn" onclick="ansM('nex1',3,1,25)"><span class="ch-ltr">D</span>Los salarios de los trabajadores aumentan por decreto</button>
+            </div>
+            <div class="feedback" id="fb-nex1"><div class="fb-row"><span class="fb-ico" id="fbi-nex1"></span><span class="fb-lbl" id="fbl-nex1"></span></div><div class="fb-exp" id="fbe-nex1"></div></div>
+          </div>
+        </div>
+
+        <div class="ex-card" id="nex2" data-unit="news">
+          <div class="ex-head" onclick="toggleEx('nex2')">
+            <div class="ex-num en-vf">N2</div>
+            <div class="ex-info"><div class="ex-ttl">Noticia 2 — Inflación y salario real</div><div class="ex-tags"><span class="etag med">Medio</span><span class="etag vf">V/F</span><span class="xp-tag">⭐ +25 XP</span></div></div>
+            <div class="ex-sti" id="sti-nex2">⬜</div><div class="chevron">▾</div>
+          </div>
+          <div class="ex-body">
+            <div class="ex-q">AFIRMACIÓN: <em>"Si el salario nominal de una persona aumenta 40% en el año pero la inflación anual es del 50%, esa persona mejoró su situación económica porque cobra más pesos."</em></div>
+            <div class="vf-row">
+              <button class="vf-btn vf-v" onclick="ansVF('nex2',true,false,25)">✅ VERDADERO</button>
+              <button class="vf-btn vf-f" onclick="ansVF('nex2',false,false,25)">❌ FALSO</button>
+            </div>
+            <div class="feedback" id="fb-nex2"><div class="fb-row"><span class="fb-ico" id="fbi-nex2"></span><span class="fb-lbl" id="fbl-nex2"></span></div><div class="fb-exp" id="fbe-nex2"></div></div>
+          </div>
+        </div>
+
+        <div class="ex-card" id="nex3" data-unit="news">
+          <div class="ex-head" onclick="toggleEx('nex3')">
+            <div class="ex-num en-mc">N3</div>
+            <div class="ex-info"><div class="ex-ttl">Noticia 3 — Elasticidad de la nafta</div><div class="ex-tags"><span class="etag med">Medio</span><span class="etag mc">Opción múltiple</span><span class="xp-tag">⭐ +25 XP</span></div></div>
+            <div class="ex-sti" id="sti-nex3">⬜</div><div class="chevron">▾</div>
+          </div>
+          <div class="ex-body">
+            <div class="ex-q">Si el precio de la nafta sube 20% y la cantidad demandada baja solo 3%, ¿cuál es el valor de la elasticidad-precio y cómo se clasifica esa demanda?</div>
+            <div class="choices" id="ch-nex3">
+              <button class="ch-btn" onclick="ansM('nex3',0,1,25)"><span class="ch-ltr">A</span>Ed = 6,7 · Demanda elástica (sensible al precio)</button>
+              <button class="ch-btn" onclick="ansM('nex3',1,1,25)"><span class="ch-ltr">B</span>Ed = 0,15 · Demanda inelástica (poco sensible al precio)</button>
+              <button class="ch-btn" onclick="ansM('nex3',2,1,25)"><span class="ch-ltr">C</span>Ed = 1 · Demanda de elasticidad unitaria</button>
+              <button class="ch-btn" onclick="ansM('nex3',3,1,25)"><span class="ch-ltr">D</span>Ed = 0,15 · Demanda elástica porque el valor es menor a 1</button>
+            </div>
+            <div class="feedback" id="fb-nex3"><div class="fb-row"><span class="fb-ico" id="fbi-nex3"></span><span class="fb-lbl" id="fbl-nex3"></span></div><div class="fb-exp" id="fbe-nex3"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GLOSSARY PAGE -->
+    <div id="glossary-page" class="page">
+      <div style="margin-bottom:22px">
+        <div style="font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;margin-bottom:4px">📖 Glosario Económico</div>
+        <div style="font-size:14px;color:var(--muted)">Los términos se desbloquean a medida que avanzás en las unidades</div>
+      </div>
+      <div class="gloss-search"><input type="text" id="gloss-input" placeholder="Buscar término..." oninput="filterGloss(this.value)"></div>
+      <div class="gloss-grid" id="gloss-grid"></div>
+    </div>
+
+    <!-- PROGRESS PAGE -->
+    <div id="progress-page" class="page">
+      <div class="prog-banner">
+        <div class="pb-title">📊 Mi Progreso</div>
+        <div style="font-size:14px;opacity:.8;margin-top:4px">Tu avance en Micro y Macroeconomía · 5° Año</div>
+      </div>
+      <div class="prog-2col">
+        <div class="progc"><div class="progc-head"><span class="progc-name">🌍 Mundo de la Economía</span><span class="progc-pct" style="color:#3B82F6" id="pp1">0%</span></div><div class="prog-bar"><div class="prog-fill" id="pf1" style="width:0%;background:linear-gradient(90deg,#3B82F6,#06B6D4)"></div></div></div>
+        <div class="progc"><div class="progc-head"><span class="progc-name">🛒 Consumidor y Demanda</span><span class="progc-pct" style="color:var(--violet)" id="pp2">0%</span></div><div class="prog-bar"><div class="prog-fill" id="pf2" style="width:0%;background:linear-gradient(90deg,var(--violet),var(--pink))"></div></div></div>
+        <div class="progc"><div class="progc-head"><span class="progc-name">🏭 Producción y Costos</span><span class="progc-pct" style="color:var(--green)" id="pp3">0%</span></div><div class="prog-bar"><div class="prog-fill" id="pf3" style="width:0%;background:linear-gradient(90deg,var(--green),var(--teal))"></div></div></div>
+        <div class="progc"><div class="progc-head"><span class="progc-name">📰 Noticias semanales</span><span class="progc-pct" style="color:var(--amber)" id="pp4">0%</span></div><div class="prog-bar"><div class="prog-fill" id="pf4" style="width:0%;background:linear-gradient(90deg,var(--amber),var(--orange))"></div></div></div>
+      </div>
+    </div>
+
+    <!-- TEACHER PAGE -->
+    <div id="teacher-page" class="page">
+      <div class="teacher-banner">
+        <div><div class="tb-title">Panel Docente 👩‍🏫</div><div class="tb-sub">Evolución de tus alumnos · Ciclo 2026</div></div>
+        <div style="font-size:52px;opacity:.3">📊</div>
+      </div>
+      <div class="metrics-row">
+        <div class="met-card"><div class="met-val" style="color:var(--indigo)">240</div><div class="met-lbl">Alumnos totales</div></div>
+        <div class="met-card"><div class="met-val" style="color:var(--green)" id="t-comp">0</div><div class="met-lbl">Ejercicios completados hoy</div></div>
+        <div class="met-card"><div class="met-val" style="color:var(--amber)" id="t-avg">—</div><div class="met-lbl">Promedio general</div></div>
+      </div>
+      <div class="course-filter">
+        <button class="cf-btn on" onclick="cf('all',this)">Todos</button>
+        <button class="cf-btn" onclick="cf('1',this)">5° 1RA</button>
+        <button class="cf-btn" onclick="cf('2',this)">5° 2DA</button>
+      </div>
+      <div style="background:white;border:1.5px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)">
+        <table class="stbl">
+          <thead><tr><th>Alumno/a</th><th>Curso</th><th>Ejercicios</th><th>XP</th><th>Promedio</th><th>Tendencia</th></tr></thead>
+          <tbody>
+            <tr><td>🦁 Ana García</td><td><span class="course-tag c1-tag">5° 1RA</span></td><td>12/14</td><td style="color:var(--amber);font-weight:800">480</td><td><span class="gpill h">9.2</span></td><td>📈</td></tr>
+            <tr><td>🐯 Matías López</td><td><span class="course-tag c1-tag">5° 1RA</span></td><td>10/14</td><td style="color:var(--amber);font-weight:800">360</td><td><span class="gpill h">8.1</span></td><td>📈</td></tr>
+            <tr><td>🦊 Lucía Torres</td><td><span class="course-tag c2-tag">5° 2DA</span></td><td>7/14</td><td style="color:var(--amber);font-weight:800">230</td><td><span class="gpill m">6.8</span></td><td>➡️</td></tr>
+            <tr><td>🤖 Juan Pérez</td><td><span class="course-tag c2-tag">5° 2DA</span></td><td>5/14</td><td style="color:var(--amber);font-weight:800">160</td><td><span class="gpill m">6.1</span></td><td>📉</td></tr>
+            <tr><td>🦸 Sofía Ramos</td><td><span class="course-tag c1-tag">5° 1RA</span></td><td>2/14</td><td style="color:var(--amber);font-weight:800">55</td><td><span class="gpill l">4.3</span></td><td>📉</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <button class="summary-btn" onclick="genSummary()">📄 Generar resumen semanal</button>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px;padding:0 4px">💡 Con Google Sheets integrado, esta tabla mostrará los datos reales de tus 240 alumnos en tiempo real.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- CERTIFICATE OVERLAY -->
+<div class="overlay" id="cert-overlay">
+  <div class="cert-modal">
+    <div class="cert-header">
+      <div class="cert-trophy">🏅</div>
+      <div class="cert-title">¡Zona Completada!</div>
+      <div class="cert-sub">Tu certificado está listo para descargar</div>
+    </div>
+    <div class="cert-body">
+      <canvas id="cert-canvas" width="800" height="560"
+        style="width:100%;border-radius:14px;border:2px solid var(--border);margin-bottom:18px;display:block;"></canvas>
+      <div class="cert-actions">
+        <button class="cert-btn cert-dl" onclick="downloadCert()">⬇ Descargar PDF</button>
+        <button class="cert-btn cert-close" style="border:2px solid var(--border)" onclick="closeCert()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<iframe id="print-frame" style="display:none"></iframe>
+
+<script>
+// ════════════════ STATE ════════════════
+const S = { name:'', av:'🦁', course:'1', role:'student', xp:0, streak:0, scores:[], done:{}, dni:'' };
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzl7KHsxQYgBueZdBpFPLpZUFFEITqWlpSZLfEvUUWyVg1I1TQo-9b-zUl4L6YVbMLf/exec';
+
+// ── Google Sheets API ──────────────────────────────────────
+async function apiPost(payload){
+  try{
+    const r = await fetch(SCRIPT_URL,{
+      method:'POST',
+      body: JSON.stringify(payload)
+    });
+    return await r.json();
+  }catch(e){ console.error('API error:',e); return {ok:false}; }
+}
+
+async function apiGet(params){
+  try{
+    const qs = new URLSearchParams(params).toString();
+    const r  = await fetch(SCRIPT_URL+'?'+qs);
+    return await r.json();
+  }catch(e){ console.error('API error:',e); return {ok:false}; }
+}
+
+function showToast(msg, color='#10B981'){
+  const t=document.createElement('div');
+  t.style.cssText=`position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+    background:${color};color:white;padding:12px 24px;border-radius:20px;
+    font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;
+    z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.2);animation:fadeUp 3s ease forwards`;
+  t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),3000);
+}
+let curRole='student', curCourse='1', curAv='🦁', curStep=0, curMission='';
+
+// ════════════════ LOGIN ════════════════
+function setRole(r){ curRole=r; document.getElementById('rp-alu').classList.toggle('on',r==='student'); document.getElementById('rp-doc').classList.toggle('on',r==='teacher'); }
+function selCourse(c){ curCourse=c; document.getElementById('cc1').classList.toggle('on',c==='1'); document.getElementById('cc2').classList.toggle('on',c==='2'); }
+function selAv(el){ document.querySelectorAll('.av-card').forEach(a=>a.classList.remove('on')); el.classList.add('on'); curAv=el.dataset.av; }
+function goS(n){
+  if(n===2){ const nm=document.getElementById('inp-name').value.trim(); if(!nm){alert('Ingresá tu nombre');return;} }
+  const prev=document.getElementById('s'+curStep); if(prev) prev.classList.remove('active');
+  const pdot=document.getElementById('sd'+curStep); if(pdot){ pdot.classList.remove('cur'); pdot.classList.add('ok'); }
+  curStep=n;
+  const next=document.getElementById('s'+n); if(next) next.classList.add('active');
+  const ndot=document.getElementById('sd'+n); if(ndot) ndot.classList.add('cur');
+}
+async function doLogin(){
+  const nm=document.getElementById('inp-name').value.trim();
+  const lg=document.getElementById('inp-leg').value.trim();
+  if(!nm||!lg){alert('Completá nombre y DNI');return;}
+
+  // Show loading state
+  const btn=document.querySelector('#s2 .btn-main');
+  const origText=btn.textContent;
+  btn.textContent='Conectando...'; btn.disabled=true;
+
+  S.name=nm; S.dni=lg; S.av=curAv; S.course=curCourse; S.role=curRole;
+
+  // Register/update in Google Sheets
+  const reg = await apiPost({action:'registrarAlumno', nombre:nm, dni:lg, curso:`5° ${curCourse==='1'?'1RA':'2DA'}`, avatar:curAv});
+
+  // Load existing progress
+  if(reg.ok){
+    const prog = await apiGet({action:'cargarProgreso', dni:lg});
+    if(prog.ok && prog.ejerciciosCompletados){
+      // Restore completed exercises
+      Object.entries(prog.ejerciciosCompletados).forEach(([key,correcto])=>{
+        S.done[key]=correcto;
+      });
+      S.xp = prog.xpTotal || 0;
+    }
+  }
+
+  btn.textContent=origText; btn.disabled=false;
+
+  // Update UI
+  document.getElementById('hav').textContent=curAv;
+  document.getElementById('hname').textContent=nm.split(' ')[0];
+  const ct=document.getElementById('hcourse');
+  ct.textContent=`5° ${curCourse==='1'?'1RA':'2DA'}`;
+  ct.className='course-tag '+(curCourse==='1'?'c1-tag':'c2-tag');
+  document.getElementById('map-av').textContent=curAv;
+  document.getElementById('map-name').textContent=nm;
+  document.getElementById('map-welcome').textContent=`¡Hola, ${nm.split(' ')[0]}! 👋`;
+  if(curRole==='teacher') document.getElementById('teacher-tab').style.display='block';
+  document.getElementById('login-screen').classList.remove('active');
+  document.getElementById('app-screen').classList.add('active');
+  buildGlossary();
+  updateStats();
+  if(S.xp>0) showToast(`Bienvenido/a de vuelta! Tenés ${S.xp} XP acumulados 🎉`);
+}
+function doLogout(){ document.getElementById('app-screen').classList.remove('active'); document.getElementById('login-screen').classList.add('active'); }
+
+// ════════════════ NAVIGATION ════════════════
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('on'));
+  const pg=document.getElementById(id); if(pg) pg.classList.add('on');
+  if(btn && btn.classList) btn.classList.add('on');
+}
+function showMsec(id,btn){
+  document.querySelectorAll('.msec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('on'));
+  const sec=document.getElementById('m'+id); if(sec) sec.classList.add('on');
+  if(btn && btn.classList) btn.classList.add('on');
+}
+function toggleEx(id){ const el=document.getElementById(id); if(el) el.classList.toggle('open'); }
+function toggleNews(btn){ if(!btn) return; const card=btn.closest('.news-card'); if(!card) return; card.classList.toggle('expanded'); btn.textContent=card.classList.contains('expanded')?'Leer menos ▲':'Leer más ▾'; }
+function cf(c,btn){ document.querySelectorAll('.cf-btn').forEach(b=>b.classList.remove('on')); if(btn) btn.classList.add('on'); }
+
+// ════════════════ MISSIONS ════════════════
+const MDATA = {
+  intro:  { tag:'ZONA DE INICIO',  title:'Mundo de la Economía',        desc:'Conceptos generales, agentes económicos y el problema fundamental de la escasez.',  color:'linear-gradient(135deg,#1D4ED8,#2563EB,#0891B2)', totalXp:150, total:4 },
+  micro1: { tag:'MICROECONOMÍA',   title:'El Consumidor y la Demanda',   desc:'Utilidad marginal, curvas de indiferencia, equilibrio y elasticidad.',               color:'linear-gradient(135deg,#6D28D9,#8B5CF6,#EC4899)', totalXp:200, total:5 },
+  micro2: { tag:'MICROECONOMÍA',   title:'Producción y Costos',          desc:'Teoría de la producción, etapas, costos y maximización del beneficio.',              color:'linear-gradient(135deg,#065F46,#10B981,#14B8A6)', totalXp:200, total:5 },
+};
+
+function openMission(id){
+  curMission=id; const m=MDATA[id];
+  document.getElementById('mbanner').style.background=m.color;
+  document.getElementById('mb-tag').textContent=m.tag;
+  document.getElementById('mb-title').textContent=m.title;
+  document.getElementById('mb-desc').textContent=m.desc;
+  document.getElementById('mb-xpval').textContent='+'+m.totalXp;
+  document.getElementById('mc').innerHTML=getContent(id);
+  document.getElementById('me').innerHTML=getExercises(id);
+  showPage('mission-page',null);
+  // Activate first tab manually without .click()
+  document.querySelectorAll('.msec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('on'));
+  const firstSec=document.getElementById('mc'); if(firstSec) firstSec.classList.add('on');
+  const firstTab=document.querySelector('.mtab'); if(firstTab) firstTab.classList.add('on');
+}
+function dlMission(){
+  const m = MDATA[curMission];
+  const contentHtml = document.getElementById('mc').innerHTML;
+  const printHtml = `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${m.title} — EcoQuest 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 22mm 20mm 22mm 20mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: #1E1B4B; background: white; line-height: 1.75; }
+
+  /* Header */
+  .doc-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 14px; border-bottom: 3px solid #7B1A1A; margin-bottom: 28px; }
+  .doc-header-left { display: flex; align-items: center; gap: 12px; }
+  .doc-school { font-size: 11px; font-weight: 700; color: #7B1A1A; letter-spacing: .06em; }
+  .doc-subject { font-size: 10px; color: #6B7280; margin-top: 2px; }
+  .doc-badge { background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 20px; padding: 4px 14px; font-size: 10px; font-weight: 700; color: #92400E; }
+
+  /* Title block */
+  .doc-title-block { margin-bottom: 28px; padding: 20px 24px; background: linear-gradient(135deg, #FEE2E2, #FFF5F5); border-radius: 12px; border-left: 5px solid #7B1A1A; }
+  .doc-zone { font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: #9B2C2C; margin-bottom: 6px; }
+  .doc-title { font-family: 'Nunito', sans-serif; font-size: 22px; font-weight: 900; color: #7B1A1A; line-height: 1.2; }
+  .doc-desc { font-size: 12px; color: #6B7280; margin-top: 6px; }
+
+  /* Content styles matching the app */
+  .reader-card { line-height: 1.85; }
+  h2 { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 800; color: #7B1A1A; margin: 24px 0 10px; display: flex; align-items: center; gap: 8px; border-bottom: 1.5px solid #FEE2E2; padding-bottom: 6px; page-break-after: avoid; }
+  h2::before { content: ''; display: inline-block; width: 4px; height: 18px; border-radius: 2px; background: #7B1A1A; flex-shrink: 0; }
+  p { font-size: 13px; color: #374151; margin-bottom: 12px; }
+  strong { color: #7B1A1A; font-weight: 700; }
+  em { color: #D97706; font-style: normal; font-weight: 600; }
+
+  .callout { border-radius: 10px; padding: 14px 18px; margin: 14px 0; display: flex; gap: 12px; page-break-inside: avoid; }
+  .callout.blue  { background: #DBEAFE; border-left: 4px solid #3B82F6; }
+  .callout.green { background: #D1FAE5; border-left: 4px solid #10B981; }
+  .callout.amber { background: #FEF3C7; border-left: 4px solid #F59E0B; }
+  .callout.purple{ background: #EDE9FE; border-left: 4px solid #8B5CF6; }
+  .callout.rose  { background: #FFE4E6; border-left: 4px solid #FB7185; }
+  .cl-ico { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .cl-title { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 5px; }
+  .callout.blue   .cl-title { color: #1D4ED8; }
+  .callout.green  .cl-title { color: #065F46; }
+  .callout.amber  .cl-title { color: #92400E; }
+  .callout.purple .cl-title { color: #5B21B6; }
+  .callout.rose   .cl-title { color: #9F1239; }
+  .cl-text { font-size: 12px; color: #374151; line-height: 1.6; }
+
+  .kl { list-style: none; margin: 8px 0 14px; }
+  .kl li { padding: 8px 12px 8px 28px; position: relative; font-size: 12.5px; color: #374151; border-bottom: 1px solid #F3F4F6; }
+  .kl li::before { content: '◆'; position: absolute; left: 10px; color: #7B1A1A; font-size: 7px; top: 12px; }
+
+  .dtable { width: 100%; border-collapse: collapse; margin: 14px 0; border-radius: 10px; overflow: hidden; page-break-inside: avoid; font-size: 11.5px; }
+  .dtable th { background: #7B1A1A; color: white; padding: 9px 12px; text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+  .dtable td { padding: 9px 12px; color: #374151; border-bottom: 1px solid #F3F4F6; }
+  .dtable tr:nth-child(even) td { background: #FFF5F5; }
+
+  /* Footer */
+  .doc-footer { margin-top: 36px; padding-top: 14px; border-top: 1.5px solid #FEE2E2; display: flex; justify-content: space-between; font-size: 10px; color: #9CA3AF; }
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .no-print { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="doc-header">
+    <div class="doc-header-left">
+      <div>
+        <div class="doc-school">Instituto Juana de Ibarbourou</div>
+        <div class="doc-subject">Elementos de Micro y Macroeconomía · 5° Año</div>
+      </div>
+    </div>
+    <div class="doc-badge">EcoQuest · Ciclo 2026</div>
+  </div>
+
+  <div class="doc-title-block">
+    <div class="doc-zone">${m.tag}</div>
+    <div class="doc-title">${m.title}</div>
+    <div class="doc-desc">${m.desc}</div>
+  </div>
+
+  ${contentHtml}
+
+  <div class="doc-footer">
+    <span>Instituto Juana de Ibarbourou · EcoQuest 2026</span>
+    <span>${m.title}</span>
+  </div>
+
+  <script>window.onload=()=>window.print();<\/script>
+</body>
+</html>`;
+
+  const blob = new Blob([printHtml], {type:'text/html;charset=utf-8'});
+  const url  = URL.createObjectURL(blob);
+  const win  = window.open(url,'_blank');
+  if(!win){ 
+    const a=document.createElement('a'); a.href=url;
+    a.download='Material-'+m.title.replace(/[^a-zA-Z0-9]/g,'-')+'.html';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  }
+  setTimeout(()=>URL.revokeObjectURL(url), 60000);
+}
+
+// ════════════════ CONTENT ════════════════
+function getContent(id){
+  const C={
+    intro:`<div class="reader-card">
+<h2>¿Qué es la Economía?</h2>
+<p>La <strong>economía</strong> es la ciencia social que estudia cómo las personas y las sociedades administran sus <em>recursos escasos</em> para satisfacer necesidades ilimitadas. Esta tensión entre lo que queremos y lo que tenemos disponible es el motor de toda la actividad económica desde el inicio de la humanidad.</p>
+<p>Pensalo así: si los recursos fueran infinitos, no habría problema económico. Podríamos tener todo lo que quisiéramos sin esfuerzo. Pero en la realidad, el tiempo, el dinero, la tierra, el trabajo y la tecnología son limitados, y eso nos obliga a <strong>elegir</strong>.</p>
+<div class="callout blue"><span class="cl-ico">🌎</span><div><div class="cl-title">Economía en tu vida diaria</div><div class="cl-text">Cuando tenés $10.000 y debés elegir entre cargar el celular, comprar útiles o salir con amigos, estás tomando una decisión económica. Cada vez que elegís algo, estás renunciando a otra cosa. Eso se llama <strong>costo de oportunidad</strong>: el valor de la mejor alternativa que no elegiste.</div></div></div>
+
+<h2>Las Grandes Definiciones de Economía</h2>
+<p>A lo largo de la historia, los economistas más importantes definieron la disciplina desde distintos ángulos. Conocerlas te ayuda a entender cómo evolucionó el pensamiento económico:</p>
+<ul class="kl">
+<li><strong>Adam Smith (1776) — "La riqueza de las naciones":</strong> considerado el padre de la economía moderna, la definió como el estudio de la naturaleza y causas de la riqueza de las naciones. Creía en los mercados libres y la "mano invisible": cada persona buscando su propio beneficio termina beneficiando a la sociedad.</li>
+<li><strong>Alfred Marshall (1890):</strong> la economía examina cómo los individuos y la sociedad usan recursos escasos con usos alternativos. Fue quien introdujo los conceptos de oferta, demanda y elasticidad tal como los conocemos hoy.</li>
+<li><strong>Lionel Robbins (1932):</strong> definición más técnica y aceptada: "ciencia que estudia la conducta humana como relación entre fines y medios escasos de usos alternativos". Focaliza en el problema de la elección.</li>
+<li><strong>Paul Samuelson (s. XX):</strong> economía es el estudio de cómo los individuos y la sociedad deciden usar recursos productivos escasos para producir bienes y distribuirlos. Su libro fue el más usado en universidades durante décadas.</li>
+<li><strong>Gregory Mankiw (actualidad):</strong> la economía es el estudio de cómo la sociedad gestiona sus recursos escasos. Sus "10 principios de la economía" son la base del estudio moderno.</li>
+</ul>
+
+<h2>El Problema Económico Fundamental</h2>
+<p>Toda sociedad, sin importar si es capitalista, socialista o mixta, enfrenta el mismo problema básico: <strong>recursos limitados frente a necesidades ilimitadas</strong>. Esto obliga a responder tres preguntas esenciales:</p>
+<div class="callout purple"><span class="cl-ico">❓</span><div><div class="cl-title">Las tres preguntas de toda economía</div><div class="cl-text">
+<strong>① ¿Qué producir?</strong> — ¿Fabricamos más autos o más colectivos? ¿Más hospitales o más shoppings? ¿Alimentos básicos o productos de lujo? Cada sociedad responde esto de manera diferente según sus valores y sistema económico.<br><br>
+<strong>② ¿Cómo producir?</strong> — ¿Con mucha mano de obra o con robots? ¿Con energía renovable o con petróleo? ¿En grandes fábricas o en pequeños talleres? La respuesta afecta el empleo, los costos y el medio ambiente.<br><br>
+<strong>③ ¿Para quién producir?</strong> — ¿Quién recibe los bienes producidos? ¿Los que más pagan, los que más necesitan, o se reparte igualitariamente? Esta pregunta está en el centro de los debates políticos actuales.
+</div></div></div>
+<div class="callout green"><span class="cl-ico">🇦🇷</span><div><div class="cl-title">Ejemplo argentino actual</div><div class="cl-text">En Argentina, el debate sobre si el Estado debe subsidiar el gas y la electricidad es exactamente la tercera pregunta: ¿para quién se produce la energía? ¿Para todos por igual (tarifas bajas), o cada uno paga según su consumo? Ambas respuestas tienen consecuencias económicas distintas.</div></div></div>
+
+<h2>Los Agentes Económicos</h2>
+<p>Un sistema económico funciona gracias a la interacción de cuatro agentes principales. Cada uno tiene un rol específico y se relaciona con los demás a través de mercados:</p>
+<table class="dtable">
+<thead><tr><th>Agente</th><th>Qué hace</th><th>Qué ofrece</th><th>Qué demanda</th><th>Ejemplo argentino</th></tr></thead>
+<tbody>
+<tr><td>🏠 Hogares / Familias</td><td>Consumen bienes y servicios. Son dueños de los factores productivos.</td><td>Trabajo, capital, tierra</td><td>Bienes y servicios</td><td>Tu familia que trabaja, paga impuestos y compra en el super</td></tr>
+<tr><td>🏭 Empresas</td><td>Producen bienes y servicios usando factores productivos.</td><td>Bienes y servicios</td><td>Trabajo, capital, materias primas</td><td>YPF, Arcor, Mercado Libre, una panadería de barrio</td></tr>
+<tr><td>🏛 Estado</td><td>Regula la economía, recauda impuestos, provee bienes públicos.</td><td>Seguridad, educación, salud, infraestructura</td><td>Trabajo (empleados públicos), bienes</td><td>El gobierno construyendo rutas, pagando jubilaciones, regulando precios</td></tr>
+<tr><td>🌐 Sector Externo</td><td>Países y organismos con los que comerciamos e intercambiamos.</td><td>Importaciones (lo que compramos afuera)</td><td>Exportaciones (lo que vendemos afuera)</td><td>Argentina exportando soja a China e importando electrónicos de Brasil</td></tr>
+</tbody></table>
+
+<div class="callout amber"><span class="cl-ico">🔄</span><div><div class="cl-title">El flujo circular de la economía</div><div class="cl-text">Los hogares le dan trabajo a las empresas → las empresas les pagan salarios → con esos salarios los hogares compran los bienes que producen las empresas → las empresas usan ese dinero para seguir produciendo. Este ciclo se llama <strong>flujo circular de ingreso</strong> y es la base del funcionamiento económico.</div></div></div>
+
+<h2>Microeconomía vs. Macroeconomía</h2>
+<p>La economía se divide en dos grandes ramas complementarias. No son opuestas: se necesitan mutuamente para entender el sistema completo.</p>
+<table class="dtable">
+<thead><tr><th></th><th>Microeconomía</th><th>Macroeconomía</th></tr></thead>
+<tbody>
+<tr><td><strong>¿Qué estudia?</strong></td><td>Comportamiento de unidades individuales</td><td>Comportamiento de la economía en su conjunto</td></tr>
+<tr><td><strong>¿A qué escala?</strong></td><td>Un consumidor, una empresa, un mercado</td><td>Un país, una región, el mundo</td></tr>
+<tr><td><strong>Variables clave</strong></td><td>Precio, cantidad, utilidad, costos, beneficio</td><td>PBI, inflación, desempleo, tipo de cambio</td></tr>
+<tr><td><strong>Pregunta típica</strong></td><td>¿Por qué sube el precio de la carne?</td><td>¿Por qué sube la inflación en Argentina?</td></tr>
+<tr><td><strong>Ejemplo</strong></td><td>Cómo decide una familia cuánta nafta comprar</td><td>Cómo afecta la suba de la nafta a toda la economía</td></tr>
+</tbody></table>
+
+<h2>Metodología Económica: Cómo Piensa un Economista</h2>
+<p>La economía usa un método científico propio. Es importante distinguir dos tipos de afirmaciones:</p>
+<div class="callout blue"><span class="cl-ico">🔬</span><div><div class="cl-title">Economía Positiva vs. Normativa</div><div class="cl-text">
+<strong>Economía Positiva</strong> (descriptiva): describe cómo funciona la realidad. Son hechos verificables. Ejemplo: "Cuando sube el precio de la nafta, la gente la usa menos." Esto se puede medir y comprobar.<br><br>
+<strong>Economía Normativa</strong> (prescriptiva): dice cómo debería funcionar la economía, basada en valores. Ejemplo: "El Estado debería subsidiar la nafta para proteger a los trabajadores." Esto involucra juicios de valor y no tiene una sola respuesta correcta.
+</div></div></div>
+<p>La mayoría de los debates políticos sobre economía mezclan ambas. Un buen economista — y un buen ciudadano — sabe distinguirlas.</p>
+
+<h2>Los Sistemas Económicos del Mundo</h2>
+<p>Distintas sociedades respondieron las tres preguntas básicas de maneras muy diferentes, dando lugar a distintos sistemas:</p>
+<ul class="kl">
+<li><strong>Economía de mercado (capitalismo):</strong> las decisiones de qué, cómo y para quién producir las toman los individuos y empresas a través del sistema de precios. Ejemplos: Estados Unidos, Alemania, Chile.</li>
+<li><strong>Economía planificada (socialismo/comunismo):</strong> el Estado centraliza todas las decisiones de producción y distribución. Ejemplo histórico: la URSS. Ejemplo actual: Cuba, Corea del Norte.</li>
+<li><strong>Economía mixta:</strong> combina mercado con intervención estatal. Es el sistema más común hoy. El Estado regula, produce algunos bienes (educación pública, salud) y deja otros al mercado. Argentina, Brasil, Francia son economías mixtas.</li>
+</ul>
+</div>`,
+
+    micro1:`<div class="reader-card">
+<h2>La Teoría del Consumidor: ¿Por Qué Elegimos Lo Que Elegimos?</h2>
+<p>La microeconomía estudia cómo los consumidores toman decisiones. El punto de partida es simple: las personas tienen <em>preferencias</em> (les gustan algunas cosas más que otras) y un <em>presupuesto limitado</em>. La teoría del consumidor explica cómo combinan ambas cosas para obtener la máxima satisfacción posible.</p>
+<p>Los economistas llaman <strong>utilidad</strong> a esa satisfacción o bienestar que experimentamos al consumir un bien o servicio. No es un concepto físico ni medible directamente, pero sirve para modelar el comportamiento de las personas.</p>
+
+<h2>La Utilidad Total y la Utilidad Marginal</h2>
+<p>Hay dos conceptos fundamentales que se complementan:</p>
+<ul class="kl">
+<li><strong>Utilidad Total (UT):</strong> satisfacción acumulada de consumir una cierta cantidad de un bien. Si comés 3 empanadas, la UT es la suma de la satisfacción que te dio cada una.</li>
+<li><strong>Utilidad Marginal (UMg):</strong> satisfacción adicional que genera consumir una unidad más de un bien. Es el cambio en la Utilidad Total al consumir una unidad extra. Matemáticamente: UMg = ΔUT / ΔQ</li>
+</ul>
+<div class="callout amber"><span class="cl-ico">📊</span><div><div class="cl-title">Tabla de utilidad — Ejemplo con empanadas</div><div class="cl-text">
+<strong>Cantidad → UT → UMg</strong><br>
+0 empanadas → 0 → —<br>
+1 empanada → 30 → 30 (mucha satisfacción, tenías hambre)<br>
+2 empanadas → 50 → 20 (menos, pero seguís disfrutando)<br>
+3 empanadas → 65 → 15 (ya casi estás lleno)<br>
+4 empanadas → 72 → 7 (casi no notás la diferencia)<br>
+5 empanadas → 72 → 0 (estás satisfecho, no querés más)<br>
+6 empanadas → 68 → -4 (te hace mal, empezás a desear no haberla comido)
+</div></div></div>
+
+<h2>La Ley de la Utilidad Marginal Decreciente</h2>
+<p>Esta ley, formulada por Hermann Heinrich Gossen en 1854, establece que <strong>a medida que aumentamos el consumo de un bien en un período dado, la satisfacción adicional (UMg) que obtenemos de cada nueva unidad va disminuyendo</strong>.</p>
+<p>Es una de las leyes más robustas de la economía porque describe algo que todos experimentamos intuitivamente. Sus implicaciones son enormes: explica por qué los precios tienden a bajar cuando hay abundancia, por qué diversificamos nuestro consumo, y por qué la curva de demanda tiene pendiente negativa.</p>
+<div class="callout green"><span class="cl-ico">💡</span><div><div class="cl-title">Aplicaciones reales de la UMg decreciente</div><div class="cl-text">
+• Las empresas hacen descuentos por cantidad porque saben que la segunda unidad vale menos para vos (2x1 en pizzas).<br>
+• Los impuestos progresivos se basan en que el primer millón de pesos tiene más utilidad para alguien que el décimo millón.<br>
+• Las apps de streaming te ofrecen el primer mes gratis: la utilidad marginal del primer mes es altísima.<br>
+• Los "todo incluido" en vacaciones funcionan porque cuando ya pagaste todo, el costo marginal percibido de consumir es cero.
+</div></div></div>
+
+<h2>Las Curvas de Indiferencia</h2>
+<p>Cuando elegimos entre <strong>dos bienes</strong> (por ejemplo: ropa y alimentos), podemos representar nuestras preferencias con curvas de indiferencia. Una curva de indiferencia muestra todas las combinaciones de dos bienes que le reportan al consumidor <em>el mismo nivel de satisfacción</em>. El consumidor es "indiferente" entre cualquier punto de esa curva.</p>
+<p>Las curvas de indiferencia tienen cuatro propiedades fundamentales que derivan de supuestos sobre las preferencias humanas:</p>
+<ul class="kl">
+<li><strong>Pendiente negativa:</strong> para mantener la misma utilidad, si consumís más de un bien debés consumir menos del otro. Si querés más ropa, algo tenés que sacrificar en alimentos. Siempre hay un trade-off.</li>
+<li><strong>No se cortan entre sí:</strong> si dos curvas se cruzaran, habría una contradicción: el mismo punto pertenecería a dos niveles distintos de utilidad, lo que es lógicamente imposible bajo el supuesto de preferencias consistentes.</li>
+<li><strong>Convexas al origen (forma de "U" acostada):</strong> refleja la preferencia por la variedad y la TMS decreciente (ver abajo).</li>
+<li><strong>Curvas más alejadas del origen = mayor utilidad:</strong> más de ambos bienes siempre es mejor (supuesto de no saciedad local).</li>
+</ul>
+
+<h2>La Tasa Marginal de Sustitución (TMS)</h2>
+<p>La TMS es la cantidad de un bien Y a la que el consumidor está dispuesto a renunciar para obtener una unidad adicional del bien X, manteniendo constante su utilidad. Es la pendiente (en valor absoluto) de la curva de indiferencia en cada punto.</p>
+<div class="callout purple"><span class="cl-ico">🧮</span><div><div class="cl-title">Propiedad clave: TMS decreciente</div><div class="cl-text">A medida que consumimos más del bien X y menos del Y, la TMS disminuye. ¿Por qué? Porque cuando tenés mucha ropa y poca comida, valorás enormemente cada kilo extra de alimento. Cuando ya tenés mucha comida y poca ropa, cada unidad de ropa te importa más. Esto es la TMS decreciente, y explica la forma convexa de las curvas.</div></div></div>
+
+<h2>La Restricción Presupuestaria</h2>
+<p>El consumidor no puede consumir cualquier combinación: está limitado por su ingreso y los precios de los bienes. La <strong>línea de presupuesto</strong> (o restricción presupuestaria) muestra todas las combinaciones de dos bienes que puede comprar gastando exactamente todo su ingreso.</p>
+<p>Ecuación: <strong>I = Px · X + Py · Y</strong> (donde I = ingreso, Px y Py = precios, X e Y = cantidades)</p>
+<div class="callout blue"><span class="cl-ico">🛒</span><div><div class="cl-title">Ejemplo concreto</div><div class="cl-text">Tenés $20.000 para gastar entre ropa ($4.000 cada prenda) y alimentos ($2.000 cada kilo). Podés comprar: 5 prendas y 0 kg / 4 prendas y 2 kg / 3 prendas y 4 kg / ... / 0 prendas y 10 kg. Todos esos puntos están sobre tu línea de presupuesto. Si sube el precio de la ropa, la línea rota y podés comprar menos ropa con el mismo dinero.</div></div></div>
+
+<h2>El Equilibrio del Consumidor</h2>
+<p>El consumidor busca maximizar su utilidad dentro de su restricción presupuestaria. Gráficamente, busca la curva de indiferencia más alta posible que sea alcanzable con su presupuesto. El <strong>equilibrio</strong> ocurre en el punto donde la curva de indiferencia es tangente a la línea de presupuesto.</p>
+<div class="callout purple"><span class="cl-ico">⚖️</span><div><div class="cl-title">Condición matemática de equilibrio</div><div class="cl-text">En el punto de equilibrio: <strong>TMS = Px / Py</strong><br>
+O equivalentemente: <strong>UMgx / Px = UMgy / Py</strong><br><br>
+Esto significa: la última unidad de dinero gastada en X debe dar la misma utilidad marginal que la última unidad gastada en Y. Si no fuera así, convendrías reasignar el gasto.</div></div></div>
+<div class="callout green"><span class="cl-ico">🇦🇷</span><div><div class="cl-title">Ejemplo argentino: el efecto de la inflación en el equilibrio</div><div class="cl-text">Cuando la inflación sube los precios de los alimentos más rápido que los salarios, la línea de presupuesto de las familias se mueve hacia adentro (pueden comprar menos). El nuevo equilibrio tiene menos de ambos bienes, pero especialmente menos del bien que subió más. Esto explica por qué cuando sube el precio de la carne, muchas familias la reemplazan por pollo o legumbres.</div></div></div>
+
+<h2>La Teoría de la Demanda Individual y de Mercado</h2>
+<p>Del equilibrio del consumidor se deriva la <strong>curva de demanda individual</strong>. Cuando el precio de un bien sube, el equilibrio óptimo cambia y el consumidor demanda menos. Así se obtiene la relación inversa entre precio y cantidad demandada — la curva de demanda tiene pendiente negativa.</p>
+<p>La <strong>demanda de mercado</strong> es la suma horizontal de todas las demandas individuales. Si hay 1.000 consumidores, la cantidad demandada a cada precio es la suma de lo que pide cada uno.</p>
+<p>La demanda puede desplazarse (cambiar toda la curva, no solo moverse sobre ella) por factores distintos al precio del bien:</p>
+<ul class="kl">
+<li><strong>Ingreso del consumidor:</strong> si aumenta el ingreso y el bien es normal, la demanda sube. Si el bien es inferior (como fideos de segunda), puede bajar.</li>
+<li><strong>Precio de bienes relacionados:</strong> si sube el precio del mate (complementario del termo), baja la demanda de termos. Si sube el precio del colectivo (sustituto del auto), puede subir la demanda de autos.</li>
+<li><strong>Gustos y preferencias:</strong> una campaña de marketing exitosa o una moda puede aumentar la demanda independientemente del precio.</li>
+<li><strong>Expectativas:</strong> si esperamos que el precio suba mañana, compramos más hoy (efecto común en Argentina con el dólar).</li>
+<li><strong>Número de compradores:</strong> más población = más demanda.</li>
+</ul>
+
+<h2>La Elasticidad-Precio de la Demanda</h2>
+<p>La elasticidad mide <em>qué tan sensible</em> es la cantidad demandada ante cambios en el precio. Es uno de los conceptos más útiles para empresas y gobiernos.</p>
+<p>Fórmula: <strong>Ed = (% cambio en Qd) / (% cambio en P)</strong></p>
+<table class="dtable">
+<thead><tr><th>Tipo</th><th>Valor |Ed|</th><th>Significado</th><th>Ejemplos reales</th></tr></thead>
+<tbody>
+<tr><td>Perfectamente inelástica</td><td>= 0</td><td>La cantidad no cambia ante ninguna suba de precio</td><td>Insulina para diabéticos, medicamentos vitales</td></tr>
+<tr><td>Inelástica</td><td>Entre 0 y 1</td><td>La cantidad cae menos que el precio</td><td>Nafta, cigarrillos, sal, agua potable, nafta</td></tr>
+<tr><td>Unitaria</td><td>= 1</td><td>Cambian en igual proporción</td><td>Caso teórico de referencia</td></tr>
+<tr><td>Elástica</td><td>Mayor a 1</td><td>La cantidad cae más que el precio</td><td>Viajes turísticos, autos de lujo, ropa de marca</td></tr>
+<tr><td>Perfectamente elástica</td><td>= infinito</td><td>Cualquier suba lleva la demanda a cero</td><td>Commodities en mercados perfectamente competitivos</td></tr>
+</tbody></table>
+<div class="callout amber"><span class="cl-ico">💼</span><div><div class="cl-title">¿Por qué le importa la elasticidad a las empresas y al gobierno?</div><div class="cl-text">
+<strong>Empresas:</strong> si la demanda es inelástica (como la nafta), pueden subir el precio y los ingresos totales aumentan porque la cantidad cae poco. Si es elástica, subir el precio les haría perder clientes rápidamente.<br><br>
+<strong>Gobierno:</strong> los impuestos al tabaco, alcohol y nafta recaudan mucho porque la demanda es inelástica: la gente los sigue comprando aunque suban. Un impuesto a bienes de lujo recaudaría menos porque la gente deja de comprarlos.
+</div></div></div>
+
+<h2>Elasticidad-Ingreso y Elasticidad Cruzada</h2>
+<p>La elasticidad no solo mide la respuesta al precio propio del bien:</p>
+<ul class="kl">
+<li><strong>Elasticidad-ingreso (Ei):</strong> mide cómo cambia la demanda ante cambios en el ingreso del consumidor. Si Ei > 0: bien normal (más ingreso = más demanda). Si Ei > 1: bien de lujo. Si Ei menor que 0: bien inferior (más ingreso = menos demanda, ej: pan de arroz).</li>
+<li><strong>Elasticidad cruzada (Exy):</strong> mide cómo cambia la demanda del bien X ante cambios en el precio del bien Y. Si Exy > 0: bienes sustitutos (si sube el precio del colectivo, más gente compra moto). Si Exy menor que 0: bienes complementarios (si sube el precio de la nafta, bajan las ventas de autos a nafta).</li>
+</ul>
+</div>`,
+
+    micro2:`<div class="reader-card">
+<h2>La Empresa y su Función en la Economía</h2>
+<p>Las empresas son los agentes que <strong>transforman insumos en productos</strong>. Combinan factores de producción (trabajo, capital, tierra, tecnología) para obtener bienes o servicios que luego venden en el mercado. Su objetivo central, según la teoría económica clásica, es <strong>maximizar el beneficio</strong>.</p>
+<p>Entender cómo producen y cuánto les cuesta es fundamental para comprender por qué los precios son como son, por qué hay empresas que cierran, por qué se automatizan procesos, y por qué algunas industrias tienen pocas empresas grandes y otras tienen miles de pequeñas.</p>
+
+<h2>La Función de Producción</h2>
+<p>La función de producción describe la relación técnica entre los factores productivos y la cantidad máxima de producto que se puede obtener con ellos. Se expresa como: <strong>Q = f(K, L)</strong> donde Q es la producción, K es el capital (máquinas, instalaciones) y L es el trabajo (horas de empleados).</p>
+<p>En el <strong>corto plazo</strong>, al menos un factor es fijo (generalmente el capital: no se construye una fábrica de un día para el otro). Solo el trabajo varía. En el <strong>largo plazo</strong>, todos los factores son variables.</p>
+
+<h2>Producto Total, Medio y Marginal</h2>
+<ul class="kl">
+<li><strong>Producto Total (PT):</strong> cantidad total producida con una combinación dada de factores. Ej: 3 trabajadores producen 150 panes por hora.</li>
+<li><strong>Producto Medio (PMe):</strong> producción promedio por unidad del factor variable. PMe = PT / L. Ej: si 3 trabajadores producen 150 panes, el PMe es 50 panes por trabajador.</li>
+<li><strong>Producto Marginal (PMg):</strong> producción adicional obtenida al agregar una unidad más del factor variable. PMg = ΔPT / ΔL. Es el concepto más importante para decisiones productivas.</li>
+</ul>
+<div class="callout amber"><span class="cl-ico">📊</span><div><div class="cl-title">Tabla de producción — Panadería con 2 hornos fijos</div><div class="cl-text">
+<strong>Trabajadores → PT (panes/día) → PMg → PMe</strong><br>
+0 → 0 → — → —<br>
+1 → 80 → 80 → 80<br>
+2 → 200 → 120 → 100 (PMg sube: los trabajadores se especializan)<br>
+3 → 330 → 130 → 110 (PMg máximo: máxima especialización)<br>
+4 → 440 → 110 → 110 (PMg empieza a caer: los hornos se saturan)<br>
+5 → 530 → 90 → 106<br>
+6 → 600 → 70 → 100<br>
+7 → 650 → 50 → 93<br>
+8 → 670 → 20 → 84<br>
+9 → 670 → 0 → 74 (PT máximo, PMg = 0)<br>
+10 → 660 → -10 → 66 (PT cae, PMg negativo — Etapa III)
+</div></div></div>
+
+<h2>Las Tres Etapas de la Producción</h2>
+<p>Analizando el comportamiento del Producto Total, Medio y Marginal, identificamos tres etapas claramente distintas:</p>
+<div class="callout blue"><span class="cl-ico">📈</span><div><div class="cl-title">Etapa I — Rendimientos crecientes</div><div class="cl-text">El PMg es positivo y creciente (mayor que el PMe). El capital fijo está siendo subutilizado. Cada nuevo trabajador que se agrega aumenta la productividad del equipo entero porque se pueden especializar. <strong>No conviene detenerse aquí</strong>: se puede producir más con el mismo capital.</div></div></div>
+<div class="callout green"><span class="cl-ico">✅</span><div><div class="cl-title">Etapa II — Rendimientos decrecientes positivos (ZONA RACIONAL)</div><div class="cl-text">El PMg es positivo pero decreciente (y menor al PMe). El PT sigue creciendo pero cada vez más lento. Es aquí donde toda empresa racional debe operar. El punto exacto dentro de esta etapa depende de los precios del producto y los factores. Es la zona de producción eficiente.</div></div></div>
+<div class="callout rose"><span class="cl-ico">❌</span><div><div class="cl-title">Etapa III — Rendimientos negativos</div><div class="cl-text">El PMg es negativo: agregar más trabajadores hace que la producción total disminuya. Hay demasiados empleados para el capital disponible: se estorban, generan desorganización y bajan la productividad. <strong>Nunca conviene operar aquí</strong>: se produce menos gastando más en salarios.</div></div></div>
+<div class="callout amber"><span class="cl-ico">🇦🇷</span><div><div class="cl-title">Ejemplo real: call centers en Argentina</div><div class="cl-text">Un call center tiene 50 líneas telefónicas (capital fijo). Con 20 operadores (Etapa I): las líneas están libres, cada operador que se suma atiende más llamadas y no espera. Con 45 operadores (Etapa II): las líneas están bien usadas, sigue siendo productivo agregar uno más pero la ganancia va siendo menor. Con 70 operadores (Etapa III): hay más operadores que líneas, se pisan entre sí, baja la productividad total.</div></div></div>
+
+<h2>La Ley de los Rendimientos Marginales Decrecientes</h2>
+<p>Esta ley fundamental (también llamada "ley de rendimientos decrecientes" o "principio de Malthus-Ricardo") establece que <strong>manteniendo fijo al menos un factor productivo, agregar sucesivas unidades del factor variable produce incrementos cada vez menores en el producto total</strong>.</p>
+<p>Es una ley tecnológica, no económica: describe una realidad física. Si pudieras seguir agregando trabajo sin límite y la producción siguiera creciendo proporcionalmente, podrías alimentar al mundo entero con una maceta de tierra.</p>
+
+<h2>Los Costos de Producción</h2>
+<p>Los costos son el valor monetario de los factores productivos utilizados. Distinguimos varios tipos según cómo se comportan con el nivel de producción:</p>
+<table class="dtable">
+<thead><tr><th>Tipo de Costo</th><th>Símbolo</th><th>Definición</th><th>Ejemplo</th><th>¿Varía con Q?</th></tr></thead>
+<tbody>
+<tr><td>Costo Fijo Total</td><td>CF</td><td>No cambia con la producción. Se paga incluso si se produce cero.</td><td>Alquiler, seguros, sueldos mínimos gerenciales</td><td>NO</td></tr>
+<tr><td>Costo Variable Total</td><td>CV</td><td>Aumenta cuando sube la producción.</td><td>Materias primas, energía, trabajadores por producción</td><td>SÍ</td></tr>
+<tr><td>Costo Total</td><td>CT</td><td>CT = CF + CV</td><td>Todo lo que gasta la empresa</td><td>Sí (por el CV)</td></tr>
+<tr><td>Costo Fijo Medio</td><td>CFMe</td><td>CF / Q. Siempre decrece al producir más.</td><td>El alquiler "por unidad" baja si fabricás más</td><td>Decrece</td></tr>
+<tr><td>Costo Variable Medio</td><td>CVMe</td><td>CV / Q. Tiene forma de U.</td><td>Costo de materias primas por unidad</td><td>Forma de U</td></tr>
+<tr><td>Costo Total Medio</td><td>CTMe</td><td>CT / Q = CFMe + CVMe. Forma de U.</td><td>Costo promedio por producto fabricado</td><td>Forma de U</td></tr>
+<tr><td>Costo Marginal</td><td>CMg</td><td>ΔCT / ΔQ. El más importante para decisiones.</td><td>¿Cuánto cuesta producir una unidad más?</td><td>Forma de U</td></tr>
+</tbody></table>
+
+<div class="callout purple"><span class="cl-ico">🧮</span><div><div class="cl-title">La curva de Costo Marginal en forma de U</div><div class="cl-text">El CMg primero cae (mientras hay rendimientos crecientes: cada unidad extra cuesta menos producirla) y luego sube (cuando hay rendimientos decrecientes: cada unidad extra cuesta más). La forma de U del CMg es el espejo de la forma de ∩ del Producto Marginal. Esta relación entre producción y costos es fundamental.</div></div></div>
+
+<h2>Costos en el Corto y Largo Plazo</h2>
+<p>La distinción entre corto y largo plazo es crucial en economía de la empresa:</p>
+<div class="callout blue"><span class="cl-ico">⏱</span><div><div class="cl-title">Corto Plazo</div><div class="cl-text">Al menos un factor es fijo (el capital). La empresa no puede cambiar su tamaño. Solo ajusta el trabajo. Si la demanda cae, puede despedir empleados pero no puede deshacerse del edificio o las máquinas que alquila. Los CF existen aunque produzca cero.</div></div></div>
+<div class="callout green"><span class="cl-ico">📅</span><div><div class="cl-title">Largo Plazo</div><div class="cl-text">Todos los factores son variables. La empresa puede cambiar su escala: construir más fábricas, cerrar plantas, adoptar nueva tecnología. En el largo plazo no hay costos fijos: todos los costos son variables. La empresa puede elegir el tamaño óptimo de planta para cada nivel de producción.</div></div></div>
+<p>En el largo plazo pueden aparecer <strong>economías de escala</strong> (el CTMe baja al aumentar la escala) o <strong>deseconomías de escala</strong> (el CTMe sube). Las grandes empresas como supermercados o autoservicios aprovechan economías de escala para tener costos menores que los almacenes de barrio.</p>
+
+<h2>Maximización del Beneficio</h2>
+<p>El objetivo de la empresa es maximizar su <strong>beneficio económico</strong> (también llamado ganancia o utilidad empresarial):</p>
+<p style="text-align:center;font-size:18px;font-weight:800;color:var(--indigo);margin:16px 0"><strong>Beneficio (π) = Ingreso Total (IT) − Costo Total (CT)</strong></p>
+<p>Donde IT = Precio × Cantidad vendida.</p>
+<div class="callout purple"><span class="cl-ico">⚖️</span><div><div class="cl-title">La regla de oro: IMg = CMg</div><div class="cl-text">
+La empresa maximiza beneficios produciendo la cantidad donde el <strong>Ingreso Marginal (IMg)</strong> iguala al <strong>Costo Marginal (CMg)</strong>.<br><br>
+• Si IMg > CMg: producir una unidad más suma más ingresos que costos → el beneficio sube → conviene producir más.<br>
+• Si IMg < CMg: producir una unidad más cuesta más de lo que ingresa → el beneficio baja → conviene producir menos.<br>
+• Si IMg = CMg: el beneficio es máximo. No conviene ni subir ni bajar la producción.
+</div></div></div>
+<div class="callout amber"><span class="cl-ico">🥐</span><div><div class="cl-title">Ejemplo paso a paso: la panadería</div><div class="cl-text">
+Una panadería vende medialunas a $500 cada una (IMg = $500 constante).<br>
+• La medialuna N°100 cuesta $300 producirla (CMg=$300). IMg($500) > CMg($300) → ganancia marginal de $200. ¡Producirla conviene!<br>
+• La medialuna N°150 cuesta $500 producirla (CMg=$500). IMg($500) = CMg($500) → ganancia marginal = $0. Es el punto óptimo.<br>
+• La medialuna N°160 cuesta $600 producirla (CMg=$600). IMg($500) < CMg($600) → pérdida marginal de $100. ¡No conviene producirla!<br>
+→ La producción óptima es 150 medialunas.
+</div></div></div>
+
+<h2>¿Cuándo Conviene Cerrar la Empresa?</h2>
+<p>Una empresa puede tener pérdidas en el corto plazo y aun así convenir seguir operando, si el precio cubre al menos los costos variables. La lógica:</p>
+<ul class="kl">
+<li><strong>Si P ≥ CTMe:</strong> la empresa tiene beneficio normal o positivo. Sigue operando.</li>
+<li><strong>Si CVMe ≤ P < CTMe:</strong> la empresa tiene pérdidas pero cubre sus costos variables. Conviene seguir en el corto plazo: cerrar implicaría pagar igualmente los CF y perder más.</li>
+<li><strong>Si P < CVMe:</strong> cada unidad vendida pierde dinero incluso sin contar los CF. Conviene cerrar inmediatamente.</li>
+</ul>
+<div class="callout rose"><span class="cl-ico">🏪</span><div><div class="cl-title">Por qué muchos negocios siguen abiertos aunque "pierden plata"</div><div class="cl-text">En Argentina, muchos comercios operan con pérdidas contables en el corto plazo porque igual están cubriendo sus costos variables y al menos algo de los fijos. Cerrar implica pagar alquileres restantes del contrato, indemnizaciones laborales y perder la inversión en instalaciones. En el largo plazo, si la situación no mejora, cerrarán. Pero en el corto plazo, aguantar puede ser la decisión racional.</div></div></div>
+</div>`
+  };
+  return C[id]||'<p>Contenido próximamente</p>';
+}
+// ════════════════ EXERCISES DATA ════════════════
+const EXS = {
+  intro:[
+    {type:'mc',title:'El problema económico fundamental',diff:'easy',xp:25,q:'¿Cuál describe mejor el problema económico fundamental?',ch:['La falta de tecnología avanzada','La tensión entre necesidades ilimitadas y recursos escasos','La desigualdad en la distribución del ingreso','La incapacidad del Estado para regular mercados'],cor:1,exp:'El problema económico fundamental es la escasez: recursos limitados vs. necesidades ilimitadas. Toda decisión económica surge de esta tensión.'},
+    {type:'vf',title:'Microeconomía vs. Macroeconomía',diff:'easy',xp:20,q:'AFIRMACIÓN: "El estudio de la tasa de inflación nacional es un tema de microeconomía."',cor:false,exp:'FALSO. La inflación nacional es una variable macroeconómica. La micro estudia unidades individuales (un consumidor, una empresa, un mercado puntual).'},
+    {type:'mc',title:'Agentes económicos',diff:'medium',xp:30,q:'Una empresa textil contrata trabajadores y vende ropa. En el flujo circular actúa principalmente como:',ch:['Consumidora de bienes finales y oferente de factores','Productora de bienes y demandante de factores de producción','Reguladora del mercado textil','Exportadora neta'],cor:1,exp:'Las empresas producen bienes (oferta de bienes) y contratan factores como trabajo y capital (demanda de factores). Son el polo productivo del flujo circular.'},
+    {type:'vf',title:'Las tres preguntas económicas',diff:'medium',xp:30,q:'AFIRMACIÓN: "\'¿Para quién producir?\' se refiere a la tecnología usada en el proceso productivo."',cor:false,exp:'FALSO. "¿Para quién producir?" refiere a la distribución de lo producido. La tecnología corresponde a "¿Cómo producir?". Son preguntas distintas.'},
+    {type:'mc',title:'Costo de oportunidad',diff:'medium',xp:30,q:'Martina tiene el sábado libre y puede elegir entre: (A) trabajar 8 horas y ganar $8.000, (B) ir al cine con amigos, o (C) estudiar para el parcial. Decide estudiar. ¿Cuál es su costo de oportunidad?',ch:['El costo de los libros y materiales de estudio','Los $8.000 que dejó de ganar trabajando, ya que era la mejor alternativa resignada','El tiempo que duró el cine, porque era lo más divertido','No hay costo de oportunidad porque estudiar es lo más importante'],cor:1,exp:'El costo de oportunidad es el valor de la MEJOR alternativa que resignás al tomar una decisión. Martina eligió estudiar, y la mejor opción que dejó de lado fue trabajar y ganar $8.000. Ese es su costo de oportunidad, no el cine (que era una opción pero no la mejor alternativa).'},
+    {type:'vf',title:'Economía positiva vs. normativa',diff:'medium',xp:30,q:'AFIRMACIÓN: "La frase \'Si el gobierno sube los impuestos, la recaudación aumentará\' es un ejemplo de economía normativa porque habla de lo que el gobierno debería hacer."',cor:false,exp:'FALSO. Es economía POSITIVA: describe una relación causa-efecto verificable empíricamente. La economía normativa incluye juicios de valor sobre lo que "debería" ocurrir, como "el gobierno debería subir impuestos para financiar hospitales". La distinción entre describir y prescribir es fundamental.'},
+    {type:'mc',title:'Sistema económico mixto',diff:'hard',xp:40,q:'Argentina tiene un sistema económico mixto. ¿Cuál de las siguientes combinaciones describe MEJOR las características de este tipo de sistema?',ch:['El Estado planifica toda la producción y distribución sin intervención privada','Los mercados privados asignan todos los recursos sin ninguna intervención estatal','Coexisten mercados privados con intervención estatal: el Estado regula, produce algunos bienes públicos y deja otros al sector privado','Las decisiones económicas las toma una asamblea de trabajadores democráticamente'],cor:2,exp:'Una economía mixta combina elementos del mercado (empresas privadas, precios libres, competencia) con intervención del Estado (regulación, empresas públicas como YPF, educación y salud pública, subsidios). Es el sistema dominante en el mundo actual. Ningún país tiene un mercado puro ni una planificación total.'}
+  ],
+  micro1:[
+    {type:'mc',title:'Utilidad Marginal Decreciente',diff:'easy',xp:25,q:'Juan toma 5 vasos de agua luego de correr. El primero lo disfruta muchísimo; el quinto apenas lo nota. ¿Qué principio ilustra esto?',ch:['La ley de oferta y demanda','La ley de utilidad marginal decreciente','El principio de maximización del beneficio','La teoría del valor trabajo'],cor:1,exp:'Ley de Utilidad Marginal Decreciente: a medida que consumimos más unidades del mismo bien, la satisfacción adicional de cada nueva unidad va disminuyendo.'},
+    {type:'vf',title:'Curvas de indiferencia',diff:'medium',xp:30,q:'AFIRMACIÓN: "Dos curvas de indiferencia del mismo consumidor pueden cortarse si ese punto representa una combinación muy deseable."',cor:false,exp:'FALSO. Dos curvas NUNCA pueden cruzarse. Si lo hicieran, el mismo punto tendría dos niveles distintos de utilidad: una contradicción lógica imposible.'},
+    {type:'mc',title:'Equilibrio del consumidor',diff:'medium',xp:35,q:'La TMS de María entre películas y libros es 3, pero Pp/Pl = 0,5. Para maximizar utilidad debería:',ch:['Comprar más películas y menos libros','Comprar más libros y menos películas','Mantener su consumo actual','Dejar de consumir películas'],cor:1,exp:'TMS=3 significa que valora mucho los libros (daría 3 películas por 1). Como los libros cuestan relativamente poco (Pp/Pl=0,5), conviene comprar más libros hasta que la TMS baje al nivel del cociente de precios.'},
+    {type:'vf',title:'Elasticidad de la insulina',diff:'medium',xp:30,q:'AFIRMACIÓN: "Si el precio de la insulina sube 50% y la cantidad demandada baja solo 5%, la demanda es elástica."',cor:false,exp:'FALSO. Ed = 5/50 = 0,1. Como |Ed| < 1, la demanda es INELÁSTICA: los diabéticos necesitan la insulina independientemente del precio.'},
+    {type:'mc',title:'Desplazamiento de demanda',diff:'hard',xp:40,q:'El precio del mate sube fuertemente Y el ingreso de los consumidores aumenta (el termo es un bien normal). ¿Qué ocurre con la demanda de termos?',ch:['Ambos efectos la desplazan a la izquierda','La suba del mate la baja; el mayor ingreso la sube. El efecto neto es incierto','Ambos efectos la desplazan a la derecha','No se ve afectada porque el precio del termo no cambió'],cor:1,exp:'Dos efectos opuestos: mate y termo son complementarios → si sube el mate, baja la demanda de termos (izquierda). Mayor ingreso en bien normal → sube la demanda de termos (derecha). Sin datos adicionales, el efecto neto es incierto.'},
+    {type:'mc',title:'Bienes normales e inferiores',diff:'medium',xp:35,q:'Durante una crisis, el ingreso de las familias cae. Las ventas de fideos de marca propia AUMENTAN y las de pastas importadas DISMINUYEN. ¿Qué tipo de bienes son cada uno?',ch:['Ambos son bienes normales porque son del mismo rubro','Los fideos de marca propia son bienes inferiores; las pastas importadas son bienes normales','Los fideos de marca propia son normales; las pastas importadas son inferiores','Ambos son bienes inferiores porque se consumen en crisis'],cor:1,exp:'Un bien inferior es aquel cuya demanda AUMENTA cuando el ingreso CAE. Los fideos baratos son bienes inferiores: se consumen más cuando hay menos dinero. Las pastas importadas son bienes normales: se consumen más cuando hay más ingreso. Esta distinción es clave para entender el comportamiento del consumidor.'},
+    {type:'vf',title:'Movimiento vs. desplazamiento de la demanda',diff:'medium',xp:30,q:'AFIRMACIÓN: "Cuando el precio de las entradas al cine sube de $3.000 a $4.500, eso provoca un desplazamiento de la curva de demanda hacia la izquierda."',cor:false,exp:'FALSO. Un cambio en el PRECIO PROPIO del bien NO desplaza la curva, sino que produce un MOVIMIENTO A LO LARGO de la misma curva (de un punto a otro). Los desplazamientos ocurren cuando cambian otros factores: ingreso, precio de bienes relacionados, gustos, expectativas. Es la distinción más importante y más confundida en demanda.'},
+    {type:'mc',title:'Equilibrio del consumidor — aplicacion',diff:'hard',xp:45,q:'Pedro gasta su presupuesto en hamburguesas ($800 c/u) y gaseosas ($400 c/u). La UMg de la ultima hamburguesa es 40 utils y la UMg de la ultima gaseosa es 15 utils. ?Esta en equilibrio?',ch:['Si, porque consume ambos bienes','NO: UMg/P hamburguesa=0,05 y UMg/P gaseosa=0,0375. Cada peso rinde mas en hamburguesas, deberia comprar mas hamburguesas y menos gaseosas','NO: deberia comprar mas gaseosas porque son mas baratas','Si, porque las hamburguesas tienen mayor UMg total'],cor:1,exp:'Condicion de equilibrio: UMgx/Px = UMgy/Py. UMg hamburguesa/800 = 40/800 = 0,05. UMg gaseosa/400 = 15/400 = 0,0375. Como cada peso gastado en hamburguesas rinde MAS utilidad, Pedro debe reasignar: mas hamburguesas, menos gaseosas, hasta igualar ambas razones.'}
+  ],
+  micro2:[
+    {type:'mc',title:'Ley de rendimientos decrecientes',diff:'easy',xp:25,q:'Con 4 empleados: 360 panes/día. Con 5: 400 panes/día. Con 3: 300 panes/día. ¿En qué etapa está al pasar de 4 a 5?',ch:['Etapa I: rendimientos crecientes','Etapa II: rendimientos decrecientes positivos','Etapa III: rendimientos negativos','No se puede determinar'],cor:1,exp:'PMg(4→5)=40; PMg(3→4)=60. El PMg es positivo (sigue creciendo) pero decreciente (bajó). Eso es Etapa II: zona racional de producción.'},
+    {type:'vf',title:'Costos fijos y variables',diff:'easy',xp:20,q:'AFIRMACIÓN: "El alquiler mensual de una fábrica es un costo variable porque si produce más, paga más alquiler."',cor:false,exp:'FALSO. El alquiler es un COSTO FIJO: se paga igual sin importar el nivel de producción (100 o 10.000 unidades). Los costos variables sí cambian con la producción.'},
+    {type:'mc',title:'Regla de maximización',diff:'medium',xp:35,q:'Una empresa produce 500 unidades. IMg=$800, CMg=$600. Para maximizar beneficios debería:',ch:['Reducir la producción, el costo es muy alto','Aumentar la producción, cada unidad extra genera $200 de ganancia neta','Mantener producción en 500, ya está en equilibrio','Cerrar la empresa'],cor:1,exp:'IMg($800) > CMg($600) → cada unidad extra genera $200 de ganancia. Debe seguir produciendo hasta que IMg = CMg. Detenerse antes deja ganancias sobre la mesa.'},
+    {type:'vf',title:'Costo total con producción cero',diff:'medium',xp:30,q:'AFIRMACIÓN: "Si una empresa produce cero unidades, su costo total también es cero."',cor:false,exp:'FALSO. Con producción cero, la empresa sigue pagando costos fijos (alquiler, seguros, amortizaciones). CT = CF + CV = CF + 0 = CF. Los CF existen aunque no se produzca nada.'},
+    {type:'mc',title:'Corto vs. largo plazo',diff:'hard',xp:40,q:'Una empresa de transporte tiene contratos de camiones por 2 años. ¿Cuál es la diferencia clave corto/largo plazo?',ch:['En el corto puede cambiar todos los factores; en el largo solo algunos','En el corto los camiones son factor fijo; en el largo puede ajustar toda la flota','Las decisiones son idénticas en ambos plazos','En el largo plazo los CF desaparecen'],cor:1,exp:'Corto plazo: contratos vigentes hacen que los camiones sean factor fijo. Largo plazo: vencidos los contratos, puede ajustar todos los factores. Esta es la distinción central.'},
+    {type:'mc',title:'Decisión de cierre en el corto plazo',diff:'hard',xp:45,q:'Una fábrica de ropa tiene: CF = $500.000/mes, CV = $300.000/mes, IT = $350.000/mes. Está operando con pérdidas. ¿Debería cerrar inmediatamente?',ch:['Sí, porque tiene pérdidas y no tiene sentido seguir operando','No, porque su IT ($350.000) supera su CV ($300.000): cubre los variables y algo de los fijos. Cerrar implicaría perder los $500.000 de CF igual','Sí, porque sus costos totales ($800.000) superan sus ingresos ($350.000) en $450.000','No, porque en el largo plazo siempre se recupera la inversión'],cor:1,exp:'En el corto plazo, una empresa debe seguir operando si P ≥ CVMe, es decir, si sus ingresos cubren al menos los costos variables. Si cierra, igual debe pagar los CF ($500.000). Si sigue operando, pierde $450.000 pero recupera $50.000 de los CF. Cerrar significaría perder $500.000. Operar es menos malo. En el largo plazo, si la situación persiste, deberá cerrar.'},
+    {type:'vf',title:'Economías de escala',diff:'medium',xp:30,q:'AFIRMACIÓN: "Un supermercado de cadena puede vender más barato que un almacén de barrio principalmente porque los empresarios del supermercado son más inteligentes y trabajan más."',cor:false,exp:'FALSO. La razón económica real son las ECONOMÍAS DE ESCALA: al producir (o comprar y vender) en grandes cantidades, el costo promedio por unidad disminuye. El supermercado compra 10.000 litros de leche y obtiene descuento por volumen; el almacén compra 50 litros y paga precio de lista. No es cuestión de inteligencia sino de escala de operación y poder de negociación.'},
+    {type:'mc',title:'Producto marginal y contratación',diff:'medium',xp:35,q:'Una empresa paga $80.000/mes a cada empleado. El quinto empleado produce 200 unidades adicionales que se venden a $500 c/u (IMg = $100.000). El sexto empleado produciría 140 unidades adicionales. ¿Debería contratar al sexto empleado?',ch:['No, porque ya tiene suficientes empleados','Sí, porque 140 unidades x $500 = $70.000 < $80.000 de salario: el PMg genera menos ingreso que el costo, no conviene contratar','Sí, porque siempre más empleados significa más producción total','No se puede determinar sin conocer el costo fijo de la empresa'],cor:1,exp:'El ingreso que genera el sexto empleado es 140 unidades x $500 = $70.000. Su costo es $80.000 (salario). Como el costo del factor ($80.000) supera el valor de su producto marginal ($70.000), NO conviene contratarlo: agrega más costos que ingresos. La regla de contratación óptima es: contratar mientras el Valor del Producto Marginal (VPMg = PMg x Precio) sea mayor o igual al salario.'}
+  ]
+};
+
+function getExercises(mId){
+  const exs=EXS[mId]||[];
+  let h=`<div style="background:var(--pastel-purple);border:2px solid #C7D2FE;border-radius:16px;padding:18px 22px;margin-bottom:16px;display:flex;gap:14px;align-items:center"><span style="font-size:28px">⚔️</span><div><div style="font-weight:800;color:var(--indigo);margin-bottom:3px">${exs.length} ejercicios · ${MDATA[mId]?.totalXp} XP en juego</div><div style="font-size:13px;color:var(--muted)">Leé bien antes de responder. ¡Cada respuesta correcta suma XP y racha!</div></div></div>`;
+  exs.forEach((ex,i)=>{
+    const eid=`${mId}_${i}`;
+    h+=`<div class="ex-card" id="ex-${eid}">
+<div class="ex-head" onclick="toggleEx('ex-${eid}')">
+  <div class="ex-num ${ex.type==='mc'?'en-mc':'en-vf'}">${i+1}</div>
+  <div class="ex-info">
+    <div class="ex-ttl">${ex.title}</div>
+    <div class="ex-tags">
+      <span class="etag ${ex.diff==='easy'?'easy':ex.diff==='medium'?'med':'hard'}">${ex.diff==='easy'?'Fácil':ex.diff==='medium'?'Medio':'Difícil'}</span>
+      <span class="etag ${ex.type}">${ex.type==='mc'?'Opción múltiple':'V / F'}</span>
+      <span class="xp-tag">⭐ +${ex.xp} XP</span>
+    </div>
+  </div>
+  <div class="ex-sti" id="sti-${eid}">⬜</div>
+  <div class="chevron">▾</div>
+</div>
+<div class="ex-body">
+  <div class="ex-q">${ex.q}</div>
+  ${ex.type==='mc'?renderMC(eid,ex):renderVF(eid,ex)}
+  <div class="feedback" id="fb-${eid}">
+    <div class="fb-row"><span class="fb-ico" id="fbi-${eid}"></span><span class="fb-lbl" id="fbl-${eid}"></span></div>
+    <div class="fb-exp" id="fbe-${eid}"></div>
+  </div>
+</div></div>`;
+  });
+  return h;
+}
+function renderMC(eid,ex){
+  const L=['A','B','C','D'];
+  return `<div class="choices" id="ch-${eid}">${ex.ch.map((c,i)=>`<button class="ch-btn" onclick="ansM('${eid}',${i},${ex.cor},${ex.xp})"><span class="ch-ltr">${L[i]}</span>${c}</button>`).join('')}</div>`;
+}
+function renderVF(eid,ex){
+  return `<div class="vf-row"><button class="vf-btn vf-v" onclick="ansVF('${eid}',true,${ex.cor},${ex.xp})">✅ VERDADERO</button><button class="vf-btn vf-f" onclick="ansVF('${eid}',false,${ex.cor},${ex.xp})">❌ FALSO</button></div>`;
+}
+
+const NEWS_EXP = {
+  nex1:'Cuando el Banco Central baja la tasa de interés, el dinero se vuelve más barato de pedir prestado. Los bancos pueden prestar a menor costo, lo que incentiva a familias y empresas a consumir e invertir más. Este es el mecanismo principal de la política monetaria expansiva.',
+  nex2:'FALSO. El salario REAL es lo que importa: mide el poder adquisitivo real. Si el salario nominal subió 40% pero los precios subieron 50%, el salario real CAYÓ un 10% aproximadamente. Esta persona puede comprar MENOS bienes que antes aunque cobre más pesos. Este es el efecto central de la inflación sobre el nivel de vida.',
+  nex3:'Ed = %ΔQ / %ΔP = 3% / 20% = 0,15. Como |Ed| = 0,15 < 1, la demanda es INELÁSTICA: ante una suba del precio, la cantidad demandada cae mucho menos proporcionalmente. Esto ocurre porque la nafta no tiene sustitutos perfectos en el corto plazo para quienes necesitan moverse.'
+};
+function ansM(eid,chosen,correct,xp){
+  if(S.done[eid]) return;
+  const chEl=document.getElementById('ch-'+eid); if(!chEl) return;
+  chEl.querySelectorAll('.ch-btn').forEach((b,i)=>{
+    b.onclick=null; b.style.cursor='default';
+    if(i===chosen) b.classList.add(chosen===correct?'cor':'wr');
+    if(i===correct&&chosen!==correct) b.classList.add('cor');
+  });
+  const parts=eid.split('_'); const mId=parts[0]; const idx=parseInt(parts[1]);
+  const exp=NEWS_EXP[eid]||(EXS[mId]||[])[idx]?.exp||'';
+  showFB(eid,chosen===correct,xp,exp);
+  markDone(eid,chosen===correct,xp);
+}
+function ansVF(eid,chosen,correct,xp){
+  if(S.done[eid]) return;
+  document.querySelectorAll('#ex-'+eid+' .vf-btn').forEach(b=>{ b.onclick=null; b.style.cursor='default'; });
+  const parts=eid.split('_'); const mId=parts[0]; const idx=parseInt(parts[1]);
+  const exp=NEWS_EXP[eid]||(EXS[mId]||[])[idx]?.exp||'';
+  showFB(eid,chosen===correct,xp,exp);
+  markDone(eid,chosen===correct,xp);
+}
+function showFB(eid,ok,xp,exp){
+  const fb=document.getElementById('fb-'+eid);
+  fb.className='feedback show '+(ok?'fok':'ffail');
+  document.getElementById('fbi-'+eid).textContent=ok?'🎉':'💡';
+  document.getElementById('fbl-'+eid).textContent=ok?'¡Correcto!':'Incorrecto — leé la explicación';
+  document.getElementById('fbe-'+eid).innerHTML=exp+(ok?`<div class="fb-xp-badge">⭐ +${xp} XP ganados</div>`:'');
+  if(ok) floatXP(xp);
+}
+function markDone(eid,ok,xp){
+  if(S.done[eid]) return;
+  S.done[eid]=true;
+  document.getElementById('sti-'+eid).textContent=ok?'✅':'❌';
+  document.getElementById('ex-'+eid).classList.add(ok?'ok':'fail');
+  if(ok){ S.xp+=xp; S.streak++; } else S.streak=0;
+  S.scores.push(ok?10:0);
+  document.getElementById('hxp').textContent=S.xp;
+  updateStats(); checkAch();
+  const mId=eid.split('_')[0]; checkMissionComplete(mId);
+
+  // Guardar en Google Sheets (async, no bloquea la UI)
+  const unidadNombre = MDATA[mId]?.title || mId;
+  const exIdx = parseInt(eid.split('_')[1]);
+  const exNombre = (EXS[mId]||[])[exIdx]?.title || eid;
+  apiPost({
+    action:    'guardarEjercicio',
+    dni:       S.dni || '',
+    curso:     `5° ${S.course==='1'?'1RA':'2DA'}`,
+    unidad:    unidadNombre,
+    ejercicio: exNombre,
+    correcto:  ok,
+    xp:        ok ? xp : 0
+  });
+}
+function floatXP(xp){
+  const el=document.createElement('div'); el.className='xp-float';
+  el.textContent='+'+xp+' XP'; el.style.left=Math.random()*60+20+'%'; el.style.top='40%';
+  document.body.appendChild(el); setTimeout(()=>el.remove(),1500);
+}
+
+function updateStats(){
+  const done=Object.values(S.done).filter(Boolean).length;
+  document.getElementById('map-xp').textContent=S.xp;
+  document.getElementById('hxp').textContent=S.xp;
+  document.getElementById('map-done').textContent=done;
+  if(S.scores.length>0){
+    const avg=(S.scores.reduce((a,b)=>a+b,0)/S.scores.length).toFixed(1);
+    document.getElementById('map-avg').textContent=avg;
+    document.getElementById('t-avg').textContent=avg;
+  }
+  document.getElementById('t-comp').textContent=done;
+  // Level
+  const LVS=[{min:0,max:200,name:'Aprendiz de Economista'},{min:200,max:500,name:'Analista Junior'},{min:500,max:900,name:'Economista'},{min:900,max:9999,name:'Maestro/a de la Economía'}];
+  let lv=LVS[0]; for(const l of LVS){ if(S.xp>=l.min) lv=l; }
+  document.getElementById('map-lvl').textContent='⚡ '+lv.name;
+  const pct=lv.max<9999?Math.min(100,Math.round(((S.xp-lv.min)/(lv.max-lv.min))*100)):100;
+  document.getElementById('pb-fill').style.width=pct+'%';
+  document.getElementById('pb-cur').textContent=S.xp+' XP';
+  document.getElementById('pb-max').textContent=`Próximo nivel: ${lv.max<9999?lv.max:S.xp} XP`;
+  // Zone progress bars
+  ['intro','micro1','micro2'].forEach((m,i)=>{
+    const exs=EXS[m]||[]; const d=exs.filter((_,j)=>S.done[`${m}_${j}`]).length;
+    const p=exs.length>0?Math.round((d/exs.length)*100):0;
+    const zf=document.getElementById('zfill-'+m); if(zf) zf.style.width=p+'%';
+    const zl=document.getElementById('zlbl-'+m); if(zl) zl.textContent=`${d}/${exs.length} ejercicios`;
+    const pp=document.getElementById('pp'+(i+1)); if(pp) pp.textContent=p+'%';
+    const pf=document.getElementById('pf'+(i+1)); if(pf) pf.style.width=p+'%';
+  });
+  // News progress
+  const nd=['nex1','nex2','nex3'].filter(id=>S.done[id]).length;
+  const np=Math.round((nd/3)*100);
+  const pp4=document.getElementById('pp4'); if(pp4) pp4.textContent=np+'%';
+  const pf4=document.getElementById('pf4'); if(pf4) pf4.style.width=np+'%';
+}
+
+function checkMissionComplete(mId){
+  if(!MDATA[mId]) return;
+  const exs=EXS[mId]||[];
+  const d=exs.filter((_,i)=>S.done[`${mId}_${i}`]).length;
+  if(d===exs.length && d>0){
+    const zr=document.getElementById('zr-'+mId);
+    if(zr&&zr.textContent!=='✅'){ zr.textContent='✅'; showCert(mId); }
+  }
+}
+// ── Certificate canvas data (set by showCert) ──
+let certData = { name:'', unit:'', date:'', xp:0, avatar:'🦁', course:'' };
+
+function showCert(mId){
+  certData = {
+    name: S.name,
+    unit: MDATA[mId].title,
+    date: new Date().toLocaleDateString('es-AR',{year:'numeric',month:'long',day:'numeric'}),
+    xp:   MDATA[mId].totalXp,
+    avatar: S.av,
+    course: `5° ${S.course==='1'?'1RA':'2DA'}`
+  };
+  drawCertificate(certData);
+  document.getElementById('cert-overlay').classList.add('show');
+}
+
+function closeCert(){ document.getElementById('cert-overlay').classList.remove('show'); }
+
+function drawCertificate(d){
+  const canvas = document.getElementById('cert-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = 800, H = 560;
+  ctx.clearRect(0,0,W,H);
+  drawCertificateOnCtx(ctx, d, W, H);
+}
+function drawCertificateOnCtx(ctx, d, W, H){
+
+  // ── Background gradient ──
+  const bg = ctx.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,   '#F4F1FF');
+  bg.addColorStop(0.5, '#FCE7F3');
+  bg.addColorStop(1,   '#DBEAFE');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0,0,W,H);
+
+  // ── Decorative corner dots ──
+  const dots=[{x:40,y:40},{x:W-40,y:40},{x:40,y:H-40},{x:W-40,y:H-40}];
+  dots.forEach(p=>{
+    ctx.beginPath(); ctx.arc(p.x,p.y,6,0,Math.PI*2);
+    ctx.fillStyle='#6366F188'; ctx.fill();
+    ctx.beginPath(); ctx.arc(p.x,p.y,14,0,Math.PI*2);
+    ctx.strokeStyle='#6366F144'; ctx.lineWidth=1.5; ctx.stroke();
+  });
+
+  // ── Outer border ──
+  roundRect(ctx, 18, 18, W-36, H-36, 22);
+  ctx.strokeStyle='#6366F166'; ctx.lineWidth=2; ctx.stroke();
+
+  // ── Inner border ──
+  roundRect(ctx, 30, 30, W-60, H-60, 16);
+  ctx.strokeStyle='#EC489966'; ctx.lineWidth=1; ctx.stroke();
+
+  // ── Top gradient banner ──
+  const banner = ctx.createLinearGradient(0,50,W,120);
+  banner.addColorStop(0,'#6366F1'); banner.addColorStop(0.5,'#8B5CF6'); banner.addColorStop(1,'#EC4899');
+  roundRect(ctx, 60, 54, W-120, 72, 14);
+  ctx.fillStyle=banner; ctx.fill();
+
+  // ── Banner text: CERTIFICADO DE LOGRO ──
+  ctx.fillStyle='white';
+  ctx.font='bold 14px Arial, sans-serif';
+  ctx.textAlign='center';
+  ctx.letterSpacing='0.15em';
+  ctx.fillText('** CERTIFICADO DE LOGRO **', W/2, 96);
+
+  // ── EcoQuest badge below banner ──
+  ctx.font='bold 11px Arial, sans-serif';
+  ctx.fillStyle='#6366F1';
+  ctx.fillText('ECO QUEST · Micro & Macroeconomía · Ciclo 2026', W/2, 148);
+
+  // ── Avatar circle ──
+  ctx.beginPath(); ctx.arc(W/2, 200, 40, 0, Math.PI*2);
+  const avGrad = ctx.createRadialGradient(W/2,200,4,W/2,200,40);
+  avGrad.addColorStop(0,'#EDE9FF'); avGrad.addColorStop(1,'#FCE7F3');
+  ctx.fillStyle=avGrad; ctx.fill();
+  ctx.strokeStyle='#6366F166'; ctx.lineWidth=2; ctx.stroke();
+  ctx.font='28px Arial, sans-serif'; ctx.textAlign='center';
+  ctx.fillStyle='#6366F1'; ctx.fillText(d.avatar||'?', W/2, 213);
+
+  // ── "Se certifica que" ──
+  ctx.font='14px Arial, sans-serif';
+  ctx.fillStyle='#6B7280'; ctx.textAlign='center';
+  ctx.fillText('Se certifica que', W/2, 268);
+
+  // ── Student name ──
+  ctx.font='bold 30px Georgia, serif';
+  ctx.fillStyle='#1E1B4B'; ctx.textAlign='center';
+  ctx.fillText(d.name, W/2, 308);
+
+  // ── Underline for name ──
+  const nameW = ctx.measureText(d.name).width;
+  ctx.beginPath();
+  ctx.moveTo(W/2 - nameW/2 - 10, 316); ctx.lineTo(W/2 + nameW/2 + 10, 316);
+  const uGrad = ctx.createLinearGradient(W/2 - nameW/2, 0, W/2 + nameW/2, 0);
+  uGrad.addColorStop(0,'#6366F1'); uGrad.addColorStop(1,'#EC4899');
+  ctx.strokeStyle=uGrad; ctx.lineWidth=2.5; ctx.stroke();
+
+  // ── "ha completado exitosamente" ──
+  ctx.font='14px Arial, sans-serif';
+  ctx.fillStyle='#6B7280'; ctx.textAlign='center';
+  ctx.fillText('ha completado exitosamente la unidad', W/2, 346);
+
+  // ── Unit name ──
+  ctx.font='bold 20px Georgia, serif';
+  ctx.fillStyle='#6366F1'; ctx.textAlign='center';
+  ctx.fillText(d.unit, W/2, 380);
+
+  // ── XP badge ──
+  roundRect(ctx, W/2-54, 394, 108, 32, 16);
+  ctx.fillStyle='#FEF3C7'; ctx.fill();
+  ctx.strokeStyle='#F59E0B66'; ctx.lineWidth=1.5; ctx.stroke();
+  ctx.font='bold 13px "Nunito", sans-serif';
+  ctx.fillStyle='#92400E'; ctx.textAlign='center';
+  ctx.fillText('+' + d.xp + ' XP obtenidos', W/2, 415);
+
+  // ── Divider ──
+  ctx.beginPath(); ctx.moveTo(100,442); ctx.lineTo(W-100,442);
+  ctx.strokeStyle='#E2DCFF'; ctx.lineWidth=1; ctx.stroke();
+
+  // ── Bottom row: course + date ──
+  ctx.font='12px Arial, sans-serif';
+  ctx.fillStyle='#9CA3AF'; ctx.textAlign='left';
+  ctx.fillText('📚 Elementos de Micro y Macroeconomía · '+d.course, 100, 466);
+  ctx.textAlign='right';
+  ctx.fillText('📅 '+d.date, W-100, 466);
+
+  // ── Bottom seal ──
+  ctx.font='bold 11px sans-serif';
+  ctx.fillStyle='#6366F188'; ctx.textAlign='center';
+  ctx.fillText('EcoQuest  -  Instituto Juana de Ibarbourou  -  2026', W/2, 500);
+}
+
+// Draw rounded rect helper
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+}
+
+function downloadCert(){
+  // Wait for fonts/emoji to render, then export as PNG image
+  const canvas = document.getElementById('cert-canvas');
+  // Re-draw at 2x resolution for crisp quality
+  const hiCanvas = document.createElement('canvas');
+  hiCanvas.width = 1600; hiCanvas.height = 1120;
+  const hiCtx = hiCanvas.getContext('2d');
+  hiCtx.scale(2, 2);
+  // Draw again at 2x (re-use drawCertificate but on hiCanvas)
+  drawCertificateOnCtx(hiCtx, certData, 800, 560);
+  const link = document.createElement('a');
+  link.download = 'Certificado-EcoQuest-' + certData.unit.replace(/[^a-zA-Z0-9]/g,'-') + '.png';
+  link.href = hiCanvas.toDataURL('image/png');
+  document.body.appendChild(link); link.click(); document.body.removeChild(link);
+}
+
+function checkAch(){
+  const done=Object.values(S.done).filter(Boolean).length;
+  if(done>=1) unlock('ach1');
+  if(S.streak>=3) unlock('ach2');
+  if(S.xp>=500) unlock('ach5');
+  const nd=['nex1','nex2','nex3'].filter(id=>S.done[id]).length;
+  if(nd>=1) unlock('ach4');
+  let allDone=true;
+  ['intro','micro1','micro2'].forEach(m=>{ const exs=EXS[m]||[]; if(exs.some((_,i)=>!S.done[`${m}_${i}`])) allDone=false; });
+  if(allDone) unlock('ach6');
+}
+function unlock(id){ const el=document.getElementById(id); if(el){ el.classList.remove('locked'); el.classList.add('unlocked'); } }
+
+// ════════════════ GLOSSARY ════════════════
+const GLOSSARY=[
+  {w:'Escasez',u:'intro',def:'Situación en que los recursos disponibles son insuficientes para satisfacer todas las necesidades y deseos humanos.',ex:'El tiempo es escaso: no podés estudiar y salir al mismo tiempo.'},
+  {w:'Microeconomía',u:'intro',def:'Rama que estudia el comportamiento de unidades económicas individuales: consumidores, empresas y mercados específicos.',ex:'¿Por qué sube el precio del tomate en verano?'},
+  {w:'Macroeconomía',u:'intro',def:'Rama que estudia el comportamiento de la economía en su conjunto: inflación, desempleo, crecimiento del PBI.',ex:'¿Por qué Argentina tiene más inflación que Brasil?'},
+  {w:'PBI',u:'intro',def:'Producto Bruto Interno: valor total de todos los bienes y servicios producidos en un país en un período determinado.',ex:'El PBI de Argentina en 2024 fue de aproximadamente 640.000 millones de dólares.'},
+  {w:'Utilidad',u:'micro1',def:'Satisfacción o bienestar que reporta el consumo de un bien o servicio.',ex:'La satisfacción que sentís al tomar una gaseosa fría en un día de calor.'},
+  {w:'Utilidad Marginal',u:'micro1',def:'Satisfacción adicional que se obtiene al consumir una unidad más de un bien.',ex:'El placer extra que da la segunda pizza comparado con la primera.'},
+  {w:'Curva de Indiferencia',u:'micro1',def:'Conjunto de combinaciones de dos bienes que generan el mismo nivel de satisfacción al consumidor.',ex:'Todas las combinaciones de ropa y comida que te dan la misma satisfacción.'},
+  {w:'Elasticidad',u:'micro1',def:'Medida de sensibilidad de la cantidad demandada ante cambios en el precio u otras variables.',ex:'La demanda de sal es inelástica: si sube el precio, seguís comprando casi igual.'},
+  {w:'Costo Fijo',u:'micro2',def:'Costo que no varía con el nivel de producción. Se paga aunque no se produzca nada.',ex:'El alquiler de una fábrica es el mismo produzca 0 o 1.000 unidades.'},
+  {w:'Costo Variable',u:'micro2',def:'Costo que aumenta o disminuye según el nivel de producción.',ex:'Las materias primas: cuantos más productos fabricás, más materias primas necesitás.'},
+  {w:'Costo Marginal',u:'micro2',def:'Costo adicional de producir una unidad más.',ex:'¿Cuánto cuesta fabricar una empanada más que ayer?'},
+  {w:'Producto Marginal',u:'micro2',def:'Producción adicional obtenida al agregar una unidad más de un factor productivo.',ex:'¿Cuántas medialunas más produce el quinto empleado contratado?'},
+];
+
+function buildGlossary(){
+  renderGlossary('');
+}
+function renderGlossary(filter){
+  const grid=document.getElementById('gloss-grid');
+  const done=Object.values(S.done).filter(Boolean).length;
+  const terms=GLOSSARY.filter(t=>t.w.toLowerCase().includes(filter.toLowerCase())||t.def.toLowerCase().includes(filter.toLowerCase()));
+  grid.innerHTML=terms.map(t=>{
+    const unlocked=done>0||(t.u==='intro');
+    return `<div class="gloss-term ${unlocked?'':'locked-t'}">
+<div class="gt-head"><div class="gt-word">${t.w}</div><div class="gt-unit">${t.u==='intro'?'Intro':t.u==='micro1'?'U1':t.u==='micro2'?'U2':'U?'}</div></div>
+<div class="gt-def">${unlocked?t.def:'🔒 Completá ejercicios para desbloquear'}</div>
+${unlocked?`<div class="gt-example">💡 ${t.ex}</div>`:''}
+</div>`;}).join('');
+}
+function filterGloss(v){ renderGlossary(v); }
+
+// Teacher summary
+function genSummary(){
+  const txt=`RESUMEN SEMANAL DOCENTE — EcoQuest\nSemana: ${new Date().toLocaleDateString('es-AR')}\n\nCURSO: 5° 1RA y 5° 2DA\nMATERIA: Elementos de Micro y Macroeconomía\n\nMÉTRICAS GENERALES:\n• Total alumnos: 240\n• Ejercicios completados: ${Object.values(S.done).filter(Boolean).length}\n• Promedio general: ${S.scores.length>0?(S.scores.reduce((a,b)=>a+b,0)/S.scores.length).toFixed(1):'Sin datos'}\n\nPRÓXIMOS PASOS SUGERIDOS:\n• Actualizar noticias semanales\n• Revisar alumnos con promedio bajo\n• Agregar contenido de la siguiente unidad`;
+  const blob=new Blob([txt],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download=`Resumen-Semanal-EcoQuest-${new Date().toLocaleDateString('es-AR').replace(/\//g,'-')}.txt`; a.click();
+}
+</script>
+</body>
+</html>
