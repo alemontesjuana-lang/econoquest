@@ -60,12 +60,12 @@ body {
 ═══════════════════════════════════════ */
 /* ── PORTADA DIAGONAL BICOLOR ── */
 .login-hero {
-  width: 480px; max-width: 95vw;
-  height: 230px;
-  border-radius: 24px;
+  width: 520px; max-width: 95vw;
+  height: 280px;
+  border-radius: 28px;
   position: relative; overflow: hidden;
-  box-shadow: 0 16px 48px rgba(123,26,26,.28);
-  margin-bottom: 24px;
+  box-shadow: 0 20px 60px rgba(123,26,26,.30);
+  margin-bottom: 28px;
   background: #FFF5F5;
   flex-shrink: 0;
 }
@@ -87,16 +87,16 @@ body {
   height:100%; z-index:1;
   display:flex; flex-direction:column;
   align-items:flex-start; justify-content:center;
-  padding: 18px 18px 18px 22px; gap:10px;
+  padding: 22px 20px 22px 26px; gap:14px;
 }
 .hero-logo {
-  width:60px; height:60px;
+  width:90px; height:90px;
   object-fit:contain;
-  border-radius:8px;
+  border-radius:10px;
   flex-shrink:0;
 }
 .hero-school {
-  font-size:11px; font-weight:600;
+  font-size:13px; font-weight:700;
   color:#FDE68A; line-height:1.4;
   letter-spacing:.02em;
 }
@@ -109,18 +109,18 @@ body {
   width:50%; height:100%; z-index:1;
   display:flex; flex-direction:column;
   align-items:flex-end; justify-content:center;
-  padding: 18px 22px; gap:10px;
+  padding: 22px 26px; gap:12px;
 }
 .hero-title {
   font-family:'Nunito',sans-serif;
-  font-size:21px; font-weight:900;
+  font-size:26px; font-weight:900;
   color:#7B1A1A; text-align:right;
-  line-height:1.18;
+  line-height:1.15;
 }
 .hero-title em { color:#D97706; font-style:normal; }
 .hero-chips { display:flex; flex-direction:column; gap:5px; align-items:flex-end; }
 .hero-chip {
-  font-size:10px; padding:3px 12px;
+  font-size:11px; padding:5px 14px;
   border-radius:20px; font-weight:700;
 }
 .hc1 { background:#FEE2E2; color:#991B1B; }
@@ -853,7 +853,7 @@ body {
   font-size: 13px; font-weight: 600; color: var(--muted);
   cursor: pointer; transition: all .15s; box-shadow: var(--shadow);
 }
-.cf-btn.on { border-color: var(--indigo); color: var(--indigo); background: var(--pastel-purple); }
+.cf-btn.on { border-color: #7B1A1A; color: #7B1A1A; background: #FEE2E2; }
 
 .stbl { width: 100%; border-collapse: collapse; }
 .stbl th { text-align: left; padding: 11px 16px; font-size: 11px; font-weight: 800; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; border-bottom: 2px solid var(--border); }
@@ -933,7 +933,6 @@ body {
       <div class="steps-row">
         <div class="step-dot cur" id="sd0"></div>
         <div class="step-dot" id="sd1"></div>
-        <div class="step-dot" id="sd2"></div>
       </div>
 
       <!-- Paso 0: rol y curso -->
@@ -960,36 +959,16 @@ body {
         <button class="btn-main" onclick="goS(1)">Continuar →</button>
       </div>
 
-      <!-- Paso 1: nombre y legajo -->
+      <!-- Paso 1: nombre y DNI -->
       <div class="step" id="s1">
         <div class="s-title">Tus datos</div>
-        <div class="s-sub">Ingresá tu nombre y legajo para guardar tu progreso</div>
+        <div class="s-sub">Ingresá tu nombre y DNI para guardar tu progreso</div>
         <label class="lbl">Nombre completo</label>
-        <input class="inp" id="inp-name" type="text" placeholder="Ej: Lucas Martínez" />
-        <label class="lbl">Número de legajo</label>
-        <input class="inp" id="inp-leg" type="text" placeholder="Ej: 2024-042" />
-        <button class="btn-main" onclick="goS(2)">Elegir avatar →</button>
+        <input class="inp" id="inp-name" type="text" placeholder="Ej: Lucía Martínez" />
+        <label class="lbl">DNI</label>
+        <input class="inp" id="inp-leg" type="text" placeholder="Ej: 44123456" inputmode="numeric" />
+        <button class="btn-main" onclick="doLogin()">Ingresar →</button>
         <button class="btn-sec" onclick="goS(0)">← Volver</button>
-      </div>
-
-      <!-- Paso 2: avatar -->
-      <div class="step" id="s2">
-        <div class="s-title">Elegí tu personaje</div>
-        <div class="s-sub">Cada personaje tiene su estilo. ¡Elegí el que más te represente!</div>
-        <div class="av-grid" id="av-grid">
-          <div class="av-card on" data-av="🦁" onclick="selAv(this)"><div class="av-emoji">🦁</div><div class="av-name">EL LÍDER</div></div>
-          <div class="av-card" data-av="🐯" onclick="selAv(this)"><div class="av-emoji">🐯</div><div class="av-name">LA FUERZA</div></div>
-          <div class="av-card" data-av="🦊" onclick="selAv(this)"><div class="av-emoji">🦊</div><div class="av-name">LA ASTUTA</div></div>
-          <div class="av-card" data-av="🐉" onclick="selAv(this)"><div class="av-emoji">🐉</div><div class="av-name">EL PODER</div></div>
-          <div class="av-card" data-av="🦅" onclick="selAv(this)"><div class="av-emoji">🦅</div><div class="av-name">LA VISIÓN</div></div>
-          <div class="av-card" data-av="🤖" onclick="selAv(this)"><div class="av-emoji">🤖</div><div class="av-name">EL ANALISTA</div></div>
-          <div class="av-card" data-av="🧙" onclick="selAv(this)"><div class="av-emoji">🧙</div><div class="av-name">EL SABIO</div></div>
-          <div class="av-card" data-av="🧜" onclick="selAv(this)"><div class="av-emoji">🧜</div><div class="av-name">LA LIBRE</div></div>
-          <div class="av-card" data-av="🦸" onclick="selAv(this)"><div class="av-emoji">🦸</div><div class="av-name">LA HEROÍNA</div></div>
-          <div class="av-card" data-av="🧝" onclick="selAv(this)"><div class="av-emoji">🧝</div><div class="av-name">EL ÉLFICO</div></div>
-        </div>
-        <button class="btn-main" onclick="doLogin()">¡Comenzar aventura! 🚀</button>
-        <button class="btn-sec" onclick="goS(1)">← Volver</button>
       </div>
     </div>
 
@@ -1264,6 +1243,118 @@ body {
 
     <!-- TEACHER PAGE -->
     <div id="teacher-page" class="page">
+
+      <!-- Banner -->
+      <div style="background:linear-gradient(135deg,#7B1A1A,#9B2C2C);border-radius:22px;padding:28px 36px;color:white;display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.14em;opacity:.7;margin-bottom:6px">PANEL DOCENTE — CICLO 2026</div>
+          <div style="font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;margin-bottom:3px">Instituto Juana de Ibarbourou</div>
+          <div style="font-size:13px;opacity:.75">Elementos de Micro y Macroeconomía · 5° 1RA y 5° 2DA</div>
+        </div>
+        <button onclick="loadTeacherData()" style="background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.4);border-radius:12px;padding:10px 20px;color:white;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer">
+          🔄 Actualizar datos
+        </button>
+      </div>
+
+      <!-- Loading state -->
+      <div id="teacher-loading" style="text-align:center;padding:40px;display:none">
+        <div style="font-size:32px;margin-bottom:12px">⏳</div>
+        <div style="font-size:15px;color:var(--muted)">Cargando datos desde Google Sheets...</div>
+      </div>
+
+      <!-- Content -->
+      <div id="teacher-content">
+
+        <!-- Métricas generales -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px" id="t-metrics">
+          <div style="background:white;border:1.5px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--shadow)">
+            <div style="font-family:'Nunito',sans-serif;font-size:34px;font-weight:900;color:#7B1A1A" id="tm-alumnos">—</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px">Alumnos registrados</div>
+          </div>
+          <div style="background:white;border:1.5px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--shadow)">
+            <div style="font-family:'Nunito',sans-serif;font-size:34px;font-weight:900;color:var(--green)" id="tm-ejercicios">—</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px">Ejercicios respondidos</div>
+          </div>
+          <div style="background:white;border:1.5px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--shadow)">
+            <div style="font-family:'Nunito',sans-serif;font-size:34px;font-weight:900;color:var(--amber)" id="tm-aciertos">—</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px">% de aciertos</div>
+          </div>
+          <div style="background:white;border:1.5px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--shadow)">
+            <div style="font-family:'Nunito',sans-serif;font-size:34px;font-weight:900;color:var(--indigo)" id="tm-xp">—</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px">XP total acumulado</div>
+          </div>
+        </div>
+
+        <!-- Filtros por curso -->
+        <div style="display:flex;gap:8px;margin-bottom:16px;align-items:center">
+          <span style="font-size:13px;font-weight:700;color:var(--muted)">Filtrar:</span>
+          <button class="cf-btn on" onclick="filterTeacher('all',this)">Todos</button>
+          <button class="cf-btn" onclick="filterTeacher('5° 1RA',this)">5° 1RA</button>
+          <button class="cf-btn" onclick="filterTeacher('5° 2DA',this)">5° 2DA</button>
+          <div style="margin-left:auto">
+            <input type="text" id="t-search" placeholder="🔍 Buscar alumno..." oninput="filterTeacherSearch()"
+              style="padding:8px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;outline:none;width:220px">
+          </div>
+        </div>
+
+        <!-- Tabla de alumnos -->
+        <div style="background:white;border:1.5px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:24px">
+          <table class="stbl" id="t-table">
+            <thead>
+              <tr>
+                <th>Alumno/a</th>
+                <th>Curso</th>
+                <th>Ejercicios</th>
+                <th>% Aciertos</th>
+                <th>XP</th>
+                <th>Certificados</th>
+                <th>Noticias</th>
+                <th>Último acceso</th>
+              </tr>
+            </thead>
+            <tbody id="t-tbody">
+              <tr><td colspan="8" style="text-align:center;padding:32px;color:var(--muted)">
+                Hacé clic en "Actualizar datos" para cargar el informe
+              </td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Actividad reciente -->
+        <div style="background:white;border:1.5px solid var(--border);border-radius:18px;padding:22px 24px;box-shadow:var(--shadow)">
+          <div style="font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;color:var(--ink);margin-bottom:16px">📋 Últimos ejercicios respondidos</div>
+          <div id="t-activity" style="font-size:13px;color:var(--muted)">Los datos aparecerán al actualizar.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- GLOSSARY PAGE -->
+    <div id="glossary-page" class="page">
+      <div style="margin-bottom:22px">
+        <div style="font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;margin-bottom:4px">📖 Glosario Económico</div>
+        <div style="font-size:14px;color:var(--muted)">Los términos se desbloquean a medida que avanzás en las unidades</div>
+      </div>
+      <div class="gloss-search"><input type="text" id="gloss-input" placeholder="Buscar término..." oninput="filterGloss(this.value)"></div>
+      <div class="gloss-grid" id="gloss-grid"></div>
+    </div>
+
+    <!-- PROGRESS PAGE -->
+    <div id="progress-page" class="page">
+      <div class="prog-banner">
+        <div class="pb-title">📊 Mi Progreso</div>
+        <div style="font-size:14px;opacity:.8;margin-top:4px">Tu avance en Micro y Macroeconomía · 5° Año</div>
+      </div>
+      <div class="prog-2col">
+        <div class="progc"><div class="progc-head"><span class="progc-name">🌍 Mundo de la Economía</span><span class="progc-pct" style="color:#3B82F6" id="pp1">0%</span></div><div class="prog-bar"><div class="prog-fill" id="pf1" style="width:0%;background:linear-gradient(90deg,#3B82F6,#06B6D4)"></div></div></div>
+        <div class="progc"><div class="progc-head"><span class="progc-name">🛒 Consumidor y Demanda</span><span class="progc-pct" style="color:var(--violet)" id="pp2">0%</span></div><div class="prog-bar"><div class="prog-fill" id="pf2" style="width:0%;background:linear-gradient(90deg,var(--violet),var(--pink))"></div></div></div>
+        <div class="progc"><div class="progc-head"><span class="progc-name">🏭 Producción y Costos</span><span class="progc-pct" style="color:var(--green)" id="pp3">0%</span></div><div class="prog-bar"><div class="prog-fill" id="pf3" style="width:0%;background:linear-gradient(90deg,var(--green),var(--teal))"></div></div></div>
+        <div class="progc"><div class="progc-head"><span class="progc-name">📰 Noticias semanales</span><span class="progc-pct" style="color:var(--amber)" id="pp4">0%</span></div><div class="prog-bar"><div class="prog-fill" id="pf4" style="width:0%;background:linear-gradient(90deg,var(--amber),var(--orange))"></div></div></div>
+      </div>
+    </div>
+
+    <!-- TEACHER PAGE -->
+    <div id="teacher-page" class="page">
       <div class="teacher-banner">
         <div><div class="tb-title">Panel Docente 👩‍🏫</div><div class="tb-sub">Evolución de tus alumnos · Ciclo 2026</div></div>
         <div style="font-size:52px;opacity:.3">📊</div>
@@ -1358,7 +1449,6 @@ function setRole(r){ curRole=r; document.getElementById('rp-alu').classList.togg
 function selCourse(c){ curCourse=c; document.getElementById('cc1').classList.toggle('on',c==='1'); document.getElementById('cc2').classList.toggle('on',c==='2'); }
 function selAv(el){ document.querySelectorAll('.av-card').forEach(a=>a.classList.remove('on')); el.classList.add('on'); curAv=el.dataset.av; }
 function goS(n){
-  if(n===2){ const nm=document.getElementById('inp-name').value.trim(); if(!nm){alert('Ingresá tu nombre');return;} }
   const prev=document.getElementById('s'+curStep); if(prev) prev.classList.remove('active');
   const pdot=document.getElementById('sd'+curStep); if(pdot){ pdot.classList.remove('cur'); pdot.classList.add('ok'); }
   curStep=n;
@@ -2203,6 +2293,156 @@ ${unlocked?`<div class="gt-example">💡 ${t.ex}</div>`:''}
 function filterGloss(v){ renderGlossary(v); }
 
 // Teacher summary
+// ══════════════════════════════════════
+// PANEL DOCENTE — carga datos reales
+// ══════════════════════════════════════
+let teacherRawData = { alumnos:[], ejercicios:[] };
+let teacherFilter  = 'all';
+
+async function loadTeacherData(){
+  const loading = document.getElementById('teacher-loading');
+  const content = document.getElementById('teacher-content');
+  loading.style.display = 'block';
+  content.style.opacity = '.4';
+
+  try {
+    // Fetch both sheets via Apps Script
+    const [resA, resE] = await Promise.all([
+      apiGet({ action:'getSheet', sheet:'Alumnos'   }),
+      apiGet({ action:'getSheet', sheet:'Ejercicios' })
+    ]);
+
+    if(resA.ok && resE.ok){
+      teacherRawData = { alumnos: resA.rows || [], ejercicios: resE.rows || [] };
+      renderTeacher();
+      showToast('Datos actualizados ✓');
+    } else {
+      showToast('Error al cargar datos. Verificá la conexión.', '#EF4444');
+    }
+  } catch(e){
+    showToast('Error de conexión con Google Sheets', '#EF4444');
+  }
+
+  loading.style.display = 'none';
+  content.style.opacity = '1';
+}
+
+function renderTeacher(){
+  const { alumnos, ejercicios } = teacherRawData;
+  const search = (document.getElementById('t-search')?.value||'').toLowerCase();
+
+  // Filter alumnos
+  const filtered = alumnos.filter(a => {
+    const matchCurso   = teacherFilter === 'all' || a[3] === teacherFilter;
+    const matchSearch  = !search || a[1]?.toLowerCase().includes(search) || String(a[2]).includes(search);
+    return matchCurso && matchSearch;
+  });
+
+  // Compute per-student stats
+  const stats = {};
+  ejercicios.forEach(e => {
+    const dni = String(e[1]);
+    if(!stats[dni]) stats[dni] = { total:0, correctos:0, xp:0, unidades:new Set(), noticias:false };
+    stats[dni].total++;
+    if(e[5]==='SI'){ stats[dni].correctos++; stats[dni].xp += Number(e[6])||0; }
+    if(e[3]) stats[dni].unidades.add(e[3]);
+    if(String(e[3]).includes('Noticia') || String(e[4]).includes('nex')) stats[dni].noticias = true;
+  });
+
+  // Compute certificates per student (completed all exercises of a unit)
+  const UNIT_COUNTS = { 'Mundo de la Economía':7, 'El Consumidor y la Demanda':8, 'Producción y Costos':8 };
+  const unitDone = {};
+  ejercicios.forEach(e => {
+    const dni  = String(e[1]);
+    const unit = e[3];
+    if(!unitDone[dni]) unitDone[dni] = {};
+    if(!unitDone[dni][unit]) unitDone[dni][unit] = 0;
+    unitDone[dni][unit]++;
+  });
+
+  // Global metrics
+  const totalEj   = ejercicios.length;
+  const totalCorr = ejercicios.filter(e=>e[5]==='SI').length;
+  const totalXP   = ejercicios.reduce((s,e)=>s+(Number(e[6])||0),0);
+  document.getElementById('tm-alumnos').textContent    = alumnos.length;
+  document.getElementById('tm-ejercicios').textContent = totalEj;
+  document.getElementById('tm-aciertos').textContent   = totalEj ? Math.round(totalCorr/totalEj*100)+'%' : '—';
+  document.getElementById('tm-xp').textContent         = totalXP;
+
+  // Build table rows
+  const tbody = document.getElementById('t-tbody');
+  if(filtered.length === 0){
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:24px;color:var(--muted)">Sin alumnos registrados todavía</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(a => {
+    const dni   = String(a[2]);
+    const st    = stats[dni] || { total:0, correctos:0, xp:0, unidades:new Set(), noticias:false };
+    const pct   = st.total ? Math.round(st.correctos/st.total*100) : 0;
+    const pctCl = pct>=70?'h':pct>=50?'m':'l';
+
+    // Count certs
+    const certs = Object.entries(unitDone[dni]||{})
+      .filter(([unit,count]) => count >= (UNIT_COUNTS[unit]||99))
+      .length;
+
+    const certBadge = certs > 0
+      ? `<span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700">🏅 ${certs}</span>`
+      : `<span style="color:var(--muted2);font-size:12px">—</span>`;
+
+    const newsBadge = st.noticias
+      ? `<span style="background:#DBEAFE;color:#1D4ED8;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700">✓</span>`
+      : `<span style="color:var(--muted2);font-size:12px">—</span>`;
+
+    const acceso = a[5] ? String(a[5]).slice(0,16) : '—';
+
+    return `<tr>
+      <td style="font-weight:600">${a[1]||'—'}</td>
+      <td><span class="course-tag ${a[3]==='5° 1RA'?'c1-tag':'c2-tag'}">${a[3]||'—'}</span></td>
+      <td>${st.total}</td>
+      <td><span class="gpill ${pctCl}">${pct}%</span></td>
+      <td style="color:var(--amber);font-weight:800;font-family:'Nunito',sans-serif">${st.xp}</td>
+      <td>${certBadge}</td>
+      <td>${newsBadge}</td>
+      <td style="font-size:12px;color:var(--muted)">${acceso}</td>
+    </tr>`;
+  }).join('');
+
+  // Recent activity
+  const recent = [...ejercicios].reverse().slice(0, 8);
+  const actEl  = document.getElementById('t-activity');
+  if(recent.length === 0){
+    actEl.innerHTML = '<span style="color:var(--muted)">Sin actividad registrada todavía.</span>';
+    return;
+  }
+  actEl.innerHTML = recent.map(e => {
+    const ok = e[5]==='SI';
+    return `<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)">
+      <span style="font-size:16px">${ok?'✅':'❌'}</span>
+      <div style="flex:1">
+        <div style="font-weight:600;color:var(--ink);font-size:13px">${e[1]} · <span style="color:var(--muted);font-weight:400">${e[3]}</span></div>
+        <div style="font-size:12px;color:var(--muted)">${e[4]}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:11px;color:var(--muted)">${String(e[0]).slice(0,16)}</div>
+        ${ok?`<div style="font-size:11px;color:var(--amber);font-weight:700">+${e[6]} XP</div>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterTeacher(curso, btn){
+  document.querySelectorAll('.cf-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  teacherFilter = curso;
+  renderTeacher();
+}
+
+function filterTeacherSearch(){
+  renderTeacher();
+}
+
 function genSummary(){
   const txt=`RESUMEN SEMANAL DOCENTE — EcoQuest\nSemana: ${new Date().toLocaleDateString('es-AR')}\n\nCURSO: 5° 1RA y 5° 2DA\nMATERIA: Elementos de Micro y Macroeconomía\n\nMÉTRICAS GENERALES:\n• Total alumnos: 240\n• Ejercicios completados: ${Object.values(S.done).filter(Boolean).length}\n• Promedio general: ${S.scores.length>0?(S.scores.reduce((a,b)=>a+b,0)/S.scores.length).toFixed(1):'Sin datos'}\n\nPRÓXIMOS PASOS SUGERIDOS:\n• Actualizar noticias semanales\n• Revisar alumnos con promedio bajo\n• Agregar contenido de la siguiente unidad`;
   const blob=new Blob([txt],{type:'text/plain;charset=utf-8'});
