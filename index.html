@@ -1000,16 +1000,19 @@ body {
       <div class="nav-logo" style="background:linear-gradient(135deg,#7B1A1A,#9B2C2C)">🎓</div>
       <span class="nav-brand-name">EcoQuest</span>
     </div>
-    <div class="nav-tabs">
-      <button class="ntab on" onclick="showPage('map-page',this)">🗺 Mapa</button>
-      <button class="ntab" onclick="showPage('news-page',this)">📰 Noticias</button>
-      <button class="ntab" onclick="showPage('glossary-page',this)">📖 Glosario</button>
-      <button class="ntab" onclick="showPage('progress-page',this)">📊 Progreso</button>
-      <button class="ntab" id="teacher-tab" style="display:none" onclick="showPage('teacher-page',this)">👩‍🏫 Docente</button>
+    <div class="nav-tabs" id="nav-tabs">
+      <!-- Tabs alumno -->
+      <button class="ntab student-tab on" onclick="showPage('map-page',this)">🗺 Mapa</button>
+      <button class="ntab student-tab" onclick="showPage('news-page',this)">📰 Noticias</button>
+      <button class="ntab student-tab" onclick="showPage('glossary-page',this)">📖 Glosario</button>
+      <button class="ntab student-tab" onclick="showPage('progress-page',this)">📊 Mi progreso</button>
+      <!-- Tabs docente -->
+      <button class="ntab teacher-tab-btn" style="display:none" onclick="showPage('teacher-page',this)" id="teacher-tab">📊 Informe</button>
+      <button class="ntab teacher-tab-btn" style="display:none" onclick="showPage('preview-page',this)" id="preview-tab">👁 Vista alumno</button>
     </div>
     <div class="nav-right">
       <div class="xp-chip">⭐ <span id="hxp">0</span> XP</div>
-      <div class="player-chip" onclick="doLogout()">
+      <div class="player-chip" onclick="doLogout()" title="Cerrar sesión">
         <div class="pchip-av" id="hav">🦁</div>
         <div>
           <div class="pchip-name" id="hname">Jugador</div>
@@ -1259,6 +1262,53 @@ body {
       </div>
     </div>
 
+    <!-- PREVIEW PAGE — Vista del alumno (solo lectura) -->
+    <div id="preview-page" class="page">
+      <div style="background:linear-gradient(135deg,#EDE9FE,#FCE7F3);border:2px solid #C7D2FE;border-radius:20px;padding:20px 28px;margin-bottom:24px;display:flex;align-items:center;gap:16px">
+        <div style="font-size:32px">👁</div>
+        <div>
+          <div style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:900;color:var(--indigo);margin-bottom:3px">Vista del alumno</div>
+          <div style="font-size:13px;color:var(--muted)">Así ve la app un alumno. Podés explorar el contenido y los ejercicios tal como lo hacen ellos.</div>
+        </div>
+      </div>
+
+      <!-- Zone cards igual que el mapa del alumno -->
+      <div style="font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;color:var(--ink);margin-bottom:14px">⚔️ Zonas disponibles</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+
+        <div style="background:white;border:2px solid var(--border);border-radius:20px;padding:20px 24px;cursor:pointer;box-shadow:var(--shadow);display:flex;align-items:center;gap:18px" onclick="previewMission('intro')">
+          <div style="width:56px;height:56px;border-radius:16px;background:var(--pastel-blue);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">🌍</div>
+          <div style="flex:1">
+            <div style="font-size:10px;font-weight:800;letter-spacing:.14em;color:#1D4ED8;text-transform:uppercase;margin-bottom:3px">Zona de inicio</div>
+            <div style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:900;color:var(--ink);margin-bottom:3px">Mundo de la Economía</div>
+            <div style="font-size:12px;color:var(--muted)">7 ejercicios · 150 XP</div>
+          </div>
+          <div style="font-size:20px;color:var(--muted)">▶</div>
+        </div>
+
+        <div style="background:white;border:2px solid var(--border);border-radius:20px;padding:20px 24px;cursor:pointer;box-shadow:var(--shadow);display:flex;align-items:center;gap:18px" onclick="previewMission('micro1')">
+          <div style="width:56px;height:56px;border-radius:16px;background:var(--pastel-purple);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">🛒</div>
+          <div style="flex:1">
+            <div style="font-size:10px;font-weight:800;letter-spacing:.14em;color:var(--violet);text-transform:uppercase;margin-bottom:3px">Microeconomía</div>
+            <div style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:900;color:var(--ink);margin-bottom:3px">El Consumidor y la Demanda</div>
+            <div style="font-size:12px;color:var(--muted)">8 ejercicios · 200 XP</div>
+          </div>
+          <div style="font-size:20px;color:var(--muted)">▶</div>
+        </div>
+
+        <div style="background:white;border:2px solid var(--border);border-radius:20px;padding:20px 24px;cursor:pointer;box-shadow:var(--shadow);display:flex;align-items:center;gap:18px" onclick="previewMission('micro2')">
+          <div style="width:56px;height:56px;border-radius:16px;background:var(--pastel-green);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">🏭</div>
+          <div style="flex:1">
+            <div style="font-size:10px;font-weight:800;letter-spacing:.14em;color:#059669;text-transform:uppercase;margin-bottom:3px">Microeconomía</div>
+            <div style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:900;color:var(--ink);margin-bottom:3px">Producción y Costos</div>
+            <div style="font-size:12px;color:var(--muted)">8 ejercicios · 200 XP</div>
+          </div>
+          <div style="font-size:20px;color:var(--muted)">▶</div>
+        </div>
+
+      </div>
+    </div>
+
     <!-- TEACHER PAGE -->
     <div id="teacher-page" class="page">
 
@@ -1371,6 +1421,53 @@ body {
       </div>
     </div>
 
+    <!-- PREVIEW PAGE — Vista del alumno (solo lectura) -->
+    <div id="preview-page" class="page">
+      <div style="background:linear-gradient(135deg,#EDE9FE,#FCE7F3);border:2px solid #C7D2FE;border-radius:20px;padding:20px 28px;margin-bottom:24px;display:flex;align-items:center;gap:16px">
+        <div style="font-size:32px">👁</div>
+        <div>
+          <div style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:900;color:var(--indigo);margin-bottom:3px">Vista del alumno</div>
+          <div style="font-size:13px;color:var(--muted)">Así ve la app un alumno. Podés explorar el contenido y los ejercicios tal como lo hacen ellos.</div>
+        </div>
+      </div>
+
+      <!-- Zone cards igual que el mapa del alumno -->
+      <div style="font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;color:var(--ink);margin-bottom:14px">⚔️ Zonas disponibles</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+
+        <div style="background:white;border:2px solid var(--border);border-radius:20px;padding:20px 24px;cursor:pointer;box-shadow:var(--shadow);display:flex;align-items:center;gap:18px" onclick="previewMission('intro')">
+          <div style="width:56px;height:56px;border-radius:16px;background:var(--pastel-blue);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">🌍</div>
+          <div style="flex:1">
+            <div style="font-size:10px;font-weight:800;letter-spacing:.14em;color:#1D4ED8;text-transform:uppercase;margin-bottom:3px">Zona de inicio</div>
+            <div style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:900;color:var(--ink);margin-bottom:3px">Mundo de la Economía</div>
+            <div style="font-size:12px;color:var(--muted)">7 ejercicios · 150 XP</div>
+          </div>
+          <div style="font-size:20px;color:var(--muted)">▶</div>
+        </div>
+
+        <div style="background:white;border:2px solid var(--border);border-radius:20px;padding:20px 24px;cursor:pointer;box-shadow:var(--shadow);display:flex;align-items:center;gap:18px" onclick="previewMission('micro1')">
+          <div style="width:56px;height:56px;border-radius:16px;background:var(--pastel-purple);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">🛒</div>
+          <div style="flex:1">
+            <div style="font-size:10px;font-weight:800;letter-spacing:.14em;color:var(--violet);text-transform:uppercase;margin-bottom:3px">Microeconomía</div>
+            <div style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:900;color:var(--ink);margin-bottom:3px">El Consumidor y la Demanda</div>
+            <div style="font-size:12px;color:var(--muted)">8 ejercicios · 200 XP</div>
+          </div>
+          <div style="font-size:20px;color:var(--muted)">▶</div>
+        </div>
+
+        <div style="background:white;border:2px solid var(--border);border-radius:20px;padding:20px 24px;cursor:pointer;box-shadow:var(--shadow);display:flex;align-items:center;gap:18px" onclick="previewMission('micro2')">
+          <div style="width:56px;height:56px;border-radius:16px;background:var(--pastel-green);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">🏭</div>
+          <div style="flex:1">
+            <div style="font-size:10px;font-weight:800;letter-spacing:.14em;color:#059669;text-transform:uppercase;margin-bottom:3px">Microeconomía</div>
+            <div style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:900;color:var(--ink);margin-bottom:3px">Producción y Costos</div>
+            <div style="font-size:12px;color:var(--muted)">8 ejercicios · 200 XP</div>
+          </div>
+          <div style="font-size:20px;color:var(--muted)">▶</div>
+        </div>
+
+      </div>
+    </div>
+
     <!-- TEACHER PAGE -->
     <div id="teacher-page" class="page">
       <div class="teacher-banner">
@@ -1480,7 +1577,9 @@ function doTeacherLogin(){
   }
   S.name='Docente'; S.role='teacher'; S.course='1';
   // Go straight to app with teacher panel visible
-  document.getElementById('teacher-tab').style.display='block';
+  // Show teacher tabs, hide student tabs
+  document.querySelectorAll('.student-tab').forEach(t=>t.style.display='none');
+  document.querySelectorAll('.teacher-tab-btn').forEach(t=>t.style.display='block');
   document.getElementById('hname').textContent='Docente';
   document.getElementById('hav').textContent='👩‍🏫';
   document.getElementById('hcourse').textContent='Docente';
@@ -1507,45 +1606,58 @@ async function doLogin(){
   const lg=document.getElementById('inp-leg').value.trim();
   if(!nm||!lg){alert('Completá nombre y DNI');return;}
 
-  // Show loading state
-  const btn=document.querySelector('#s2 .btn-main');
-  const origText=btn.textContent;
-  btn.textContent='Conectando...'; btn.disabled=true;
+  // Show loading on button — now in step 1 (not s2)
+  const btn=document.querySelector('#s1 .btn-main');
+  const origText=btn?btn.textContent:'Ingresar →';
+  if(btn){ btn.textContent='Conectando...'; btn.disabled=true; }
 
-  S.name=nm; S.dni=lg; S.av=curAv; S.course=curCourse; S.role=curRole;
+  S.name=nm; S.dni=lg; S.av='📚'; S.course=curCourse; S.role=curRole;
 
-  // Register/update in Google Sheets
-  const reg = await apiPost({action:'registrarAlumno', nombre:nm, dni:lg, curso:`5° ${curCourse==='1'?'1RA':'2DA'}`, avatar:curAv});
-
-  // Load existing progress
-  if(reg.ok){
-    const prog = await apiGet({action:'cargarProgreso', dni:lg});
-    if(prog.ok && prog.ejerciciosCompletados){
-      // Restore completed exercises
-      Object.entries(prog.ejerciciosCompletados).forEach(([key,correcto])=>{
-        S.done[key]=correcto;
-      });
-      S.xp = prog.xpTotal || 0;
+  // Register/update in Google Sheets (non-blocking on error)
+  try{
+    const reg = await apiPost({action:'registrarAlumno', nombre:nm, dni:lg, curso:`5° ${curCourse==='1'?'1RA':'2DA'}`, avatar:'📚'});
+    if(reg.ok){
+      const prog = await apiGet({action:'cargarProgreso', dni:lg});
+      if(prog.ok && prog.ejerciciosCompletados){
+        Object.entries(prog.ejerciciosCompletados).forEach(([key,correcto])=>{
+          S.done[key]=correcto;
+        });
+        S.xp = prog.xpTotal || 0;
+      }
     }
-  }
+  }catch(e){ console.warn('Sheets no disponible, modo offline'); }
 
-  btn.textContent=origText; btn.disabled=false;
+  if(btn){ btn.textContent=origText; btn.disabled=false; }
 
-  // Update UI
-  document.getElementById('hav').textContent=curAv;
-  document.getElementById('hname').textContent=nm.split(' ')[0];
-  const ct=document.getElementById('hcourse');
-  ct.textContent=`5° ${curCourse==='1'?'1RA':'2DA'}`;
-  ct.className='course-tag '+(curCourse==='1'?'c1-tag':'c2-tag');
-  document.getElementById('map-av').textContent=curAv;
-  document.getElementById('map-name').textContent=nm;
-  document.getElementById('map-welcome').textContent=`¡Hola, ${nm.split(' ')[0]}! 👋`;
-  if(curRole==='teacher') document.getElementById('teacher-tab').style.display='block';
+  // Update HUD
+  const av = '📚';
+  const el_hav  = document.getElementById('hav');
+  const el_hname= document.getElementById('hname');
+  const el_hc   = document.getElementById('hcourse');
+  const el_mav  = document.getElementById('map-av');
+  const el_mname= document.getElementById('map-name');
+  const el_mwel = document.getElementById('map-welcome');
+  if(el_hav)   el_hav.textContent   = av;
+  if(el_hname) el_hname.textContent = nm.split(' ')[0];
+  if(el_hc){   el_hc.textContent=`5° ${curCourse==='1'?'1RA':'2DA'}`; el_hc.className='course-tag '+(curCourse==='1'?'c1-tag':'c2-tag'); }
+  if(el_mav)   el_mav.textContent   = av;
+  if(el_mname) el_mname.textContent = nm;
+  if(el_mwel)  el_mwel.textContent  = `¡Hola, ${nm.split(' ')[0]}! 👋`;
+
+  // Show student tabs only
+  document.querySelectorAll('.student-tab').forEach(t=>t.style.display='');
+  document.querySelectorAll('.teacher-tab-btn').forEach(t=>t.style.display='none');
+
   document.getElementById('login-screen').classList.remove('active');
   document.getElementById('app-screen').classList.add('active');
+
+  // Navigate to map
+  const firstTab = document.querySelector('.student-tab');
+  showPage('map-page', firstTab);
+
   buildGlossary();
   updateStats();
-  if(S.xp>0) showToast(`Bienvenido/a de vuelta! Tenés ${S.xp} XP acumulados 🎉`);
+  if(S.xp>0) showToast(`¡Bienvenido/a de vuelta! Tenés ${S.xp} XP acumulados 🎉`);
 }
 function doLogout(){ document.getElementById('app-screen').classList.remove('active'); document.getElementById('login-screen').classList.add('active'); }
 
@@ -2345,6 +2457,19 @@ function filterGloss(v){ renderGlossary(v); }
 // ══════════════════════════════════════
 let teacherRawData = { alumnos:[], ejercicios:[] };
 let teacherFilter  = 'all';
+
+function previewMission(id){
+  // Reuse openMission but navigate back to preview
+  openMission(id);
+  // Change back button to go to preview
+  setTimeout(()=>{
+    const backBtn = document.querySelector('.btn-back');
+    if(backBtn){
+      backBtn.textContent = '← Volver a vista alumno';
+      backBtn.onclick = ()=> showPage('preview-page', document.getElementById('preview-tab'));
+    }
+  }, 100);
+}
 
 async function loadTeacherData(){
   const loading = document.getElementById('teacher-loading');
